@@ -229,7 +229,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     color: var(--color-corporate-blue);
     /* ★追加：オレンジの下線を引く */
     position: relative;
-    display: inline-block; /* 下線の幅を文字に合わせるため */
     padding-bottom: 10px;
 }
 /* 下線の設定 */
@@ -246,10 +245,6 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 /* 左揃えの見出し用調整 */
-.c-heading--left { 
-    text-align: center; 
-    display: block; /* ブロックに戻す */
-}
 .c-heading--left::after {
     left: 50%;
     transform: translateX(-50%);
