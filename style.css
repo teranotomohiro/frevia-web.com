@@ -393,9 +393,9 @@ ul { list-style: none; padding: 0; margin: 0; }
 /* フッター全体を中央寄せにする */
 .footer {
   text-align: center;
-  padding: 40px 0; /* 上下の余白 */
-  background-color: #333; /* 背景色（必要なら変更してください） */
-  color: #fff; /* 文字色 */
+  padding: 40px 0;
+  background-color: var(--color-primary); /* ★ヘッダーと同じ青色に変更 */
+  color: var(--color-white);
 }
 
 /* ロゴの下に隙間を作る */
@@ -405,11 +405,12 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 /* ★追加：フッターロゴを中央に寄せる設定 */
 .footer-logo {
-  margin-inline: auto; /* 左右中央揃え */
+  margin-inline: auto;
 }
 
 /* コピーライトの文字サイズ */
 .footer-copyright-area small {
   font-size: 12px;
-  opacity: 0.8; 
+  opacity: 0.8;
 }
+/* 最後の余分な } は削除済み */
