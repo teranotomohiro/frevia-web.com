@@ -400,11 +400,16 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 /* ロゴの下に隙間を作る */
 .footer-logo-area {
-  margin-bottom: 20px; /* ここで「ロゴ」と「コピーライト」の距離を調整 */
+  margin-bottom: 20px;
+}
+
+/* ★追加：フッターロゴを中央に寄せる設定 */
+.footer-logo {
+  margin-inline: auto; /* 左右中央揃え */
 }
 
 /* コピーライトの文字サイズ */
 .footer-copyright-area small {
   font-size: 12px;
-  opacity: 0.8; /* 少し薄くして上品にする */
+  opacity: 0.8; 
 }
