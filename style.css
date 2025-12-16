@@ -335,7 +335,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     display: block;
 }
 .c-card__title {
-    color: var(--color-primary); /* カードタイトルは水色 */
+    color: var(--color-corporate-blue); 
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.25rem;
