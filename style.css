@@ -1,19 +1,18 @@
-
 /* ==========================================================================
    Variables & Reset (共通設定)
    ========================================================================== */
 :root {
-    /* --- コーポレートカラー定義 --- */
-    --color-primary: #23a5bb;        /* 水色：メインカラー（ヘッダー・フッター用） */
-    --color-corporate-blue: #003668; /* 紺色：ベースカラー（見出し・テキスト強調用） */
-    --color-accent: #e84233;         /* オレンジ：アクセント（CVボタン用） */
+    /* --- コーポレートカラー定義 (PDF準拠) --- */
+    --color-primary: #23a5bb;        /* 水色：メインカラー（ヘッダー・フッター・通常ボタン） */
+    --color-corporate-blue: #003668; /* 紺色：ベースカラー（見出し・背景・ホバー色） */
+    --color-accent: #e84233;         /* オレンジ：アクセント（CVボタン・強調） */
 
     /* --- その他カラー設定 --- */
-    --color-text-main: #333;         /* 通常の文字色 */
-    --color-text-light: #666;        /* 薄い文字色 */
-    --color-bg-body: #fff;
-    --color-bg-light: #f4f7f6;
-    --color-bg-dark: #1a1a1a;
+    --color-text-main: #333;         /* テキスト：黒 */
+    --color-text-light: #666;        /* テキスト：グレー */
+    --color-bg-body: #fff;           /* 背景：白 */
+    --color-bg-light: #f4f7f6;       /* 背景：薄いグレー */
+    --color-bg-dark: #1a1a1a;        /* 背景：黒（汎用） */
     --color-white: #fff;
     --color-border: #e0e0e0;
 
@@ -21,8 +20,8 @@
     --font-base: "Noto Sans JP", "Inter", sans-serif;
     
     --spacing-md: 1.5rem;
-    --spacing-lg: 4rem;
-    --spacing-lg-sp: 3rem;
+    --spacing-lg: 4rem; /* PC用余白 */
+    --spacing-lg-sp: 3rem; /* スマホ用余白 */
     --container-width: 1080px;
     --radius-base: 6px;
     --header-height: 70px;
@@ -64,6 +63,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     align-items: center;
     position: sticky;
     top: 0;
+    /* ★メインカラー（水色） */
     background: var(--color-primary); 
     color: var(--color-white); 
     z-index: 1000;
@@ -79,7 +79,7 @@ ul { list-style: none; padding: 0; margin: 0; }
    Hamburger Menu & Nav (レスポンシブ対応)
    ========================================================================== */
 
-/* デフォルト（PC表示）のナビゲーションスタイル */
+/* デフォルト（PC表示） */
 .l-nav__list { 
     display: flex; 
     gap: 1.5rem; 
@@ -87,11 +87,10 @@ ul { list-style: none; padding: 0; margin: 0; }
     font-size: 0.9rem; 
     font-weight: 700; 
 }
-.c-hamburger { display: none; } /* PCでは非表示 */
+.c-hamburger { display: none; }
 
 /* スマホ表示 (768px以下) */
 @media (max-width: 768px) {
-    /* ハンバーガーボタンのスタイル */
     .c-hamburger {
         display: block;
         width: 30px;
@@ -116,7 +115,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     .c-hamburger__line:nth-child(2) { top: 14px; }
     .c-hamburger__line:nth-child(3) { bottom: 4px; }
 
-    /* ハンバーガーメニューOPEN時 */
     .c-hamburger.is-active .c-hamburger__line:nth-child(1) {
         top: 14px;
         transform: rotate(45deg);
@@ -129,24 +127,23 @@ ul { list-style: none; padding: 0; margin: 0; }
         transform: rotate(-45deg);
     }
 
-    /* スマホ用ナビゲーション (ドロワー) */
     .l-nav {
         position: fixed;
-        top: var(--header-height); /* ヘッダーの下 */
+        top: var(--header-height);
         left: 0;
         width: 100%;
         height: calc(100vh - var(--header-height));
+        /* ★ナビ背景もメインカラー */
         background: var(--color-primary);
         padding: 2rem;
-        transform: translateX(100%); /* 初期状態は右に隠す */
+        transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         overflow-y: auto;
     }
     .l-nav.is-active {
-        transform: translateX(0); /* 出現 */
+        transform: translateX(0);
     }
 
-    /* メニューリストの縦並び */
     .l-nav__list {
         display: flex;
         flex-direction: column;
@@ -162,8 +159,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     }
 }
 
-
-
 /* ==========================================================================
    Components (コンポーネント)
    ========================================================================== */
@@ -174,7 +169,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     display: inline-flex;
     align-items: center;
     height: 100%;
-    z-index: 1001; /* ハンバーガーメニューより手前に */
+    z-index: 1001;
 }
 .c-logo__image {
     height: 40px;
@@ -183,6 +178,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     display: block;
 }
 
+/* ボタン設定 */
 .c-btn {
     display: inline-flex;
     justify-content: center;
@@ -193,11 +189,16 @@ ul { list-style: none; padding: 0; margin: 0; }
     cursor: pointer;
     border: none;
 }
-.c-btn--primary { background: var(--color-primary); color: var(--color-white); }
-.c-btn--primary:hover { background: var(--color-corporate-blue);}
-.c-btn--large { background: var(--color-white); color: var(--color-primary); padding: 1em 3em; }
-.c-btn--wide { width: 100%; }
+/* 通常ボタン：水色 -> ホバーで紺色 */
+.c-btn--primary { 
+    background: var(--color-primary); 
+    color: var(--color-white); 
+}
+.c-btn--primary:hover { 
+    background: var(--color-corporate-blue); 
+}
 
+/* 白ボタン：白 -> ホバーで薄グレー（文字は水色） */
 .c-btn--white {
     background: var(--color-white);
     color: var(--color-primary);
@@ -205,28 +206,21 @@ ul { list-style: none; padding: 0; margin: 0; }
 .c-btn--white:hover {
     background: #f0f0f0;
 }
-/* ★追加：アクセントボタン（オレンジ） */
-/* index.htmlで <a class="c-btn c-btn--accent"> のように使えます */
-.c-btn--accent {
-    background: var(--color-accent);
-    color: var(--color-white);
-}
-.c-btn--accent:hover {
-    opacity: 0.8;
-}
+.c-btn--large { padding: 1em 3em; }
+.c-btn--wide { width: 100%; }
 
+/* 見出し：紺色に変更して引き締め */
 .c-heading { 
     font-size: clamp(1.75rem, 5vw, 2rem); 
     margin-bottom: 2rem; 
-    text-align: center;
-    /* ★追加：見出しを紺色にして読みやすくする */
-    color: var(--color-corporate-blue);
+    text-align: center; 
+    color: var(--color-corporate-blue); /* ★ここを変更 */
 }
-/* ただし、背景が暗いセクションの見出しは白のままにする */
-.c-heading--white { color: var(--color-white); }
 .c-heading--left { text-align: left; }
 @media (max-width: 768px) { .c-heading--left { text-align: center; } }
+.c-heading--white { color: var(--color-white); }
 
+/* スローガン：水色 */
 .c-slogan {
     font-size: clamp(1.4rem, 4vw, 2.5rem);
     font-weight: 700;
@@ -242,9 +236,10 @@ ul { list-style: none; padding: 0; margin: 0; }
 .c-text-white { color: var(--color-white); }
 .c-text-center { text-align: center; }
 
+/* 必須バッジ：アクセント（オレンジ） */
 .c-badge-required {
     font-size: 0.75rem;
-    background: #e74c3c;
+    background: var(--color-accent); /* ★ここを変更 */
     color: #fff;
     padding: 2px 6px;
     border-radius: 4px;
@@ -261,14 +256,15 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 .p-section--bg-light { background: var(--color-bg-light); }
-.p-section--dark { background: var(--color-bg-dark); }
+/* コンタクト背景：紺色 */
+.p-section--dark { background: var(--color-corporate-blue); }
 
-/* Hero */
+/* Hero：水色から紺色のグラデーション */
 .p-hero {
     background: linear-gradient(135deg, var(--color-primary), var(--color-corporate-blue));
     color: var(--color-white);
     padding: 6rem 0;
-    text-align: center
+    text-align: center;
 }
 @media (max-width: 768px) { .p-hero { padding: 4rem 0; } }
 
@@ -277,7 +273,6 @@ ul { list-style: none; padding: 0; margin: 0; }
 /* Grid for Services */
 .p-grid {
     display: grid;
-    /* モバイルでは1列、画面が広がれば自動で列が増える設定 */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
@@ -291,7 +286,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     flex-direction: column;
     height: 100%;
 }
-
 .c-card__image-wrapper {
     width: 100%;
     margin-bottom: 1.5rem;
@@ -299,7 +293,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     overflow: hidden;
     background-color: #f4f4f4;
 }
-
 .c-card__image {
     width: 100%;
     height: auto;
@@ -307,14 +300,12 @@ ul { list-style: none; padding: 0; margin: 0; }
     aspect-ratio: 16 / 9;
     display: block;
 }
-
 .c-card__title {
-    color: var(--color-primary);
+    color: var(--color-primary); /* カードタイトルは水色 */
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.25rem;
 }
-
 .c-card__text {
     font-size: 0.95rem;
     color: var(--color-text-main);
@@ -332,9 +323,8 @@ ul { list-style: none; padding: 0; margin: 0; }
     text-align: center;
 }
 @media (max-width: 768px) {
-    .p-stats { gap: 2rem; flex-direction: column; } /* スマホでは縦並び */
+    .p-stats { gap: 2rem; flex-direction: column; }
 }
-
 .p-stats__item { display: flex; flex-direction: column; }
 .p-stats__number { font-size: 3.5rem; font-weight: 700; color: var(--color-primary); line-height: 1; }
 .p-stats__label { font-size: 0.9rem; color: var(--color-text-light); margin-top: 0.5rem; }
@@ -354,14 +344,13 @@ ul { list-style: none; padding: 0; margin: 0; }
     font-weight: bold;
 }
 
-/* Split Layout (Rep & About) */
+/* Split Layout */
 .p-split {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
     align-items: center;
 }
-/* 768px以上でのみ2カラムにする */
 @media(min-width: 768px) { .p-split { grid-template-columns: 1fr 1fr; } }
 
 .c-placeholder-img {
@@ -374,7 +363,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 .p-rep-name { font-size: 1.5rem; margin-top: 0; }
 .p-rep-name__en { font-size: clamp(1.5rem, 5vw, 3rem); color: var(--color-text-main); margin-left: 0.5rem; display: inline-block; }
 
-/* Definition List (Company Info) */
+/* Definition List */
 .c-definition-list { border-top: 1px solid var(--color-border); }
 .c-definition-list__row {
     display: flex;
@@ -382,10 +371,9 @@ ul { list-style: none; padding: 0; margin: 0; }
     border-bottom: 1px solid var(--color-border);
     padding: 1rem 0;
 }
-.c-definition-list dt { width: 100%; font-weight: 700; margin-bottom: 0.5rem; }
+.c-definition-list dt { width: 100%; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-corporate-blue); }
 .c-definition-list dd { width: 100%; margin: 0; }
 
-/* PCレイアウト (600px以上) */
 @media(min-width: 600px) {
     .c-definition-list dt { width: 30%; margin-bottom: 0; }
     .c-definition-list dd { width: 70%; }
@@ -404,7 +392,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     border-radius: 4px;
     font-size: 1rem;
     font-family: inherit;
-    appearance: none; /* スマホでのデフォルトスタイルリセット */
+    appearance: none;
 }
 .p-form__input:focus, .p-form__textarea:focus {
     outline: 2px solid var(--color-primary);
@@ -412,32 +400,29 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 /* ==========================================================================
-   Footer (フッター再構築版)
+   Footer
    ========================================================================== */
 .l-footer {
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary); /* ★メインカラー（水色） */
     color: var(--color-white);
     padding: 3rem 0;
     text-align: center;
 }
 
-/* フッター内のロゴ位置調整 */
 .l-footer__logo {
-    margin-bottom: 1.5rem; /* コピーライトとの隙間 */
+    margin-bottom: 1.5rem;
     display: flex;
-    justify-content: center; /* Flexboxで強制的に中央寄せ */
+    justify-content: center;
 }
 
-/* 画像自体の設定（念のため） */
 .l-footer__logo img {
     display: block;
-    margin: 0 auto; /* 画像単体でも中央に来るように */
+    margin: 0 auto;
 }
 
-/* コピーライトのデザイン */
 .l-footer__copyright {
-    display: block;      /* 改行させる */
-    font-size: 0.8rem;   /* 少し小さく */
-    opacity: 0.9;        /* 少し透明にして馴染ませる */
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.9;
     font-weight: 400;
 }
