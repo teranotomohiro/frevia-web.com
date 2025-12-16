@@ -80,9 +80,8 @@ ul { list-style: none; padding: 0; margin: 0; }
     max-width: var(--container-width); /* コンテンツ幅に合わせる */
     border-radius: var(--radius-base); /* 角を丸くする */
     box-shadow: 0 4px 20px var(--color-shadow); /* 影をつけて浮かせる */
-    
-    background: var(--color-primary); 
-    color: var(--color-white); 
+    background: var(--color-bg-body); 
+    color: var(--color-primary); 
     z-index: 1000;
     /* ボーダーは削除（浮いているため不要） */
     border-bottom: none;
@@ -165,7 +164,7 @@ ul { list-style: none; padding: 0; margin: 0; }
         overflow-y: auto;
         z-index: 999; /* ヘッダー(1000)より後ろ、またはハンバーガー(1001)より後ろ */
     }
-    
+
     .l-nav.is-active {
         transform: translateX(0);
     }
