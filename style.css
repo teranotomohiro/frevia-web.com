@@ -2,8 +2,11 @@
    Variables & Reset (共通設定)
    ========================================================================== */
 :root {
-    --color-primary: #0056b3;
-    --color-primary-dark: #004494;
+    [cite_start]/* コーポレートカラー定義 [cite: 1] */
+    --color-primary: #23a5bb;      /* 水色：メインカラー */
+    --color-corporate-blue: #003668; /* 紺色：ベースカラー（ヘッダー・フッター用） */
+    --color-accent: #e84233;       /* オレンジ：アクセント（CVボタン用） */
+
     --color-text-main: #333;
     --color-text-light: #666;
     --color-bg-body: #fff;
@@ -15,8 +18,8 @@
     --font-base: "Noto Sans JP", "Inter", sans-serif;
     
     --spacing-md: 1.5rem;
-    --spacing-lg: 4rem; /* PC用余白 */
-    --spacing-lg-sp: 3rem; /* スマホ用余白 */
+    --spacing-lg: 4rem;
+    --spacing-lg-sp: 3rem;
     --container-width: 1080px;
     --radius-base: 6px;
     --header-height: 70px;
@@ -58,7 +61,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     align-items: center;
     position: sticky;
     top: 0;
-    background: var(--color-primary); 
+    background: var(--color-corporate-blue); 
     color: var(--color-white); 
     z-index: 1000;
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -188,7 +191,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     border: none;
 }
 .c-btn--primary { background: var(--color-primary); color: var(--color-white); }
-.c-btn--primary:hover { background: var(--color-primary-dark); }
+.c-btn--primary:hover { background: var(--color-corporate-blue);}
 .c-btn--large { background: var(--color-white); color: var(--color-primary); padding: 1em 3em; }
 .c-btn--wide { width: 100%; }
 
@@ -198,6 +201,15 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 .c-btn--white:hover {
     background: #f0f0f0;
+}
+/* ★追加：アクセントボタン（オレンジ） */
+/* index.htmlで <a class="c-btn c-btn--accent"> のように使えます */
+.c-btn--accent {
+    background: var(--color-accent);
+    color: var(--color-white);
+}
+.c-btn--accent:hover {
+    opacity: 0.8;
 }
 
 .c-heading { font-size: clamp(1.75rem, 5vw, 2rem); margin-bottom: 2rem; text-align: center; }
@@ -243,10 +255,10 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 /* Hero */
 .p-hero {
-    background: linear-gradient(135deg, var(--color-primary), #002a5c);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-corporate-blue));
     color: var(--color-white);
     padding: 6rem 0;
-    text-align: center;
+    text-align: center
 }
 @media (max-width: 768px) { .p-hero { padding: 4rem 0; } }
 
@@ -393,10 +405,10 @@ ul { list-style: none; padding: 0; margin: 0; }
    Footer (フッター再構築版)
    ========================================================================== */
 .l-footer {
-    background-color: var(--color-primary); /* ヘッダーと同じ青色 */
-    color: var(--color-white);              /* 文字色は白 */
-    padding: 3rem 0;                        /* 上下の余白 */
-    text-align: center;                     /* 中身を中央寄せ */
+    background-color: var(--color-corporate-blue);
+    color: var(--color-white);
+    padding: 3rem 0;
+    text-align: center;
 }
 
 /* フッター内のロゴ位置調整 */
