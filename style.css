@@ -64,7 +64,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     align-items: center;
     position: sticky;
     top: 0;
-    background: var(--color-corporate-blue); 
+    background: var(--color-primary); 
     color: var(--color-white); 
     z-index: 1000;
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -215,10 +215,17 @@ ul { list-style: none; padding: 0; margin: 0; }
     opacity: 0.8;
 }
 
-.c-heading { font-size: clamp(1.75rem, 5vw, 2rem); margin-bottom: 2rem; text-align: center; }
+.c-heading { 
+    font-size: clamp(1.75rem, 5vw, 2rem); 
+    margin-bottom: 2rem; 
+    text-align: center;
+    /* ★追加：見出しを紺色にして読みやすくする */
+    color: var(--color-corporate-blue);
+}
+/* ただし、背景が暗いセクションの見出しは白のままにする */
+.c-heading--white { color: var(--color-white); }
 .c-heading--left { text-align: left; }
 @media (max-width: 768px) { .c-heading--left { text-align: center; } }
-.c-heading--white { color: var(--color-white); }
 
 .c-slogan {
     font-size: clamp(1.4rem, 4vw, 2.5rem);
@@ -408,7 +415,7 @@ ul { list-style: none; padding: 0; margin: 0; }
    Footer (フッター再構築版)
    ========================================================================== */
 .l-footer {
-    background-color: var(--color-corporate-blue);
+    background-color: var(--color-primary); 
     color: var(--color-white);
     padding: 3rem 0;
     text-align: center;
