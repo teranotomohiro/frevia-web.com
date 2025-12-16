@@ -156,7 +156,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     }
 }
 
-.l-footer { background: var(--color-bg-dark); color: var(--color-white); padding: 3rem 0; text-align: center; }
+
 
 /* ==========================================================================
    Components (コンポーネント)
@@ -176,7 +176,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     object-fit: contain;
     display: block;
 }
-.l-footer .c-logo img { height: 50px; }
 
 .c-btn {
     display: inline-flex;
@@ -390,27 +389,33 @@ ul { list-style: none; padding: 0; margin: 0; }
     border-color: transparent;
 }
 
-/* フッター全体を中央寄せにする */
-.footer {
-  text-align: center;
-  padding: 40px 0;
-  background-color: var(--color-primary); /* ★ヘッダーと同じ青色に変更 */
-  color: var(--color-white);
+/* ==========================================================================
+   Footer (フッター再構築版)
+   ========================================================================== */
+.l-footer {
+    background-color: var(--color-primary); /* ヘッダーと同じ青色 */
+    color: var(--color-white);              /* 文字色は白 */
+    padding: 3rem 0;                        /* 上下の余白 */
+    text-align: center;                     /* 中身を中央寄せ */
 }
 
-/* ロゴの下に隙間を作る */
-.footer-logo-area {
-  margin-bottom: 20px;
+/* フッター内のロゴ位置調整 */
+.l-footer__logo {
+    margin-bottom: 1.5rem; /* コピーライトとの隙間 */
+    display: flex;
+    justify-content: center; /* Flexboxで強制的に中央寄せ */
 }
 
-/* ★追加：フッターロゴを中央に寄せる設定 */
-.footer-logo {
-  margin-inline: auto;
+/* 画像自体の設定（念のため） */
+.l-footer__logo img {
+    display: block;
+    margin: 0 auto; /* 画像単体でも中央に来るように */
 }
 
-/* コピーライトの文字サイズ */
-.footer-copyright-area small {
-  font-size: 12px;
-  opacity: 0.8;
+/* コピーライトのデザイン */
+.l-footer__copyright {
+    display: block;      /* 改行させる */
+    font-size: 0.8rem;   /* 少し小さく */
+    opacity: 0.9;        /* 少し透明にして馴染ませる */
+    font-weight: 400;
 }
-/* 最後の余分な } は削除済み */
