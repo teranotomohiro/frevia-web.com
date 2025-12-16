@@ -246,12 +246,12 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 /* 左揃えの見出し用調整 */
 .c-heading--left { 
-    text-align: left; 
+    text-align: center; 
     display: block; /* ブロックに戻す */
 }
 .c-heading--left::after {
-    left: 0;
-    transform: none;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .c-heading--white { color: var(--color-white); }
