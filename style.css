@@ -257,7 +257,7 @@ ul { list-style: none; padding: 0; margin: 0; }
     font-size: clamp(1.4rem, 4vw, 2.5rem);
     font-weight: 700;
     line-height: 1.4;
-    color: var(--color-primary);
+    color: var(--color-corporate-blue);
     margin-bottom: 2rem;
     letter-spacing: 0.05em;
     font-family: var(--font-base);
@@ -363,7 +363,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 .p-stats__number { 
     font-size: 3.5rem; 
     font-weight: 700; 
-    color: var(--color-accent); /* ★ここをオレンジに変更 */
+    color: var(--color-corporate-blue); 
     line-height: 1; 
 }
 
