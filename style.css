@@ -389,3 +389,22 @@ ul { list-style: none; padding: 0; margin: 0; }
     outline: 2px solid var(--color-primary);
     border-color: transparent;
 }
+
+/* フッター全体を中央寄せにする */
+.footer {
+  text-align: center;
+  padding: 40px 0; /* 上下の余白 */
+  background-color: #333; /* 背景色（必要なら変更してください） */
+  color: #fff; /* 文字色 */
+}
+
+/* ロゴの下に隙間を作る */
+.footer-logo-area {
+  margin-bottom: 20px; /* ここで「ロゴ」と「コピーライト」の距離を調整 */
+}
+
+/* コピーライトの文字サイズ */
+.footer-copyright-area small {
+  font-size: 12px;
+  opacity: 0.8; /* 少し薄くして上品にする */
+}
