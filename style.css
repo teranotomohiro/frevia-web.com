@@ -194,6 +194,17 @@ ul { list-style: none; padding: 0; margin: 0; }
     background: var(--color-primary); 
     color: var(--color-white); 
 }
+
+/* アクセントボタン（オレンジ）：一番目立たせたいボタン用 */
+.c-btn--accent {
+    background: var(--color-accent);
+    color: var(--color-white);
+}
+.c-btn--accent:hover {
+    background: #c9302c; /* 少し濃いオレンジ */
+    opacity: 1;
+}
+
 .c-btn--primary:hover { 
     background: var(--color-corporate-blue); 
 }
@@ -214,11 +225,34 @@ ul { list-style: none; padding: 0; margin: 0; }
     font-size: clamp(1.75rem, 5vw, 2rem); 
     margin-bottom: 2rem; 
     text-align: center; 
-    color: var(--color-corporate-blue); /* ★ここを変更 */
+    color: var(--color-corporate-blue);
+    /* ★追加：オレンジの下線を引く */
+    position: relative;
+    display: inline-block; /* 下線の幅を文字に合わせるため */
+    padding-bottom: 10px;
 }
-.c-heading--left { text-align: left; }
-@media (max-width: 768px) { .c-heading--left { text-align: center; } }
-.c-heading--white { color: var(--color-white); }
+/* 下線の設定 */
+.c-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* 中央寄せ */
+    width: 60px; /* 線の長さ */
+    height: 4px; /* 線の太さ */
+    background-color: var(--color-accent); /* オレンジ色 */
+    border-radius: 2px;
+}
+
+/* 左揃えの見出し用調整 */
+.c-heading--left { 
+    text-align: left; 
+    display: block; /* ブロックに戻す */
+}
+.c-heading--left::after {
+    left: 0;
+    transform: none;
+}
 
 /* スローガン：水色 */
 .c-slogan {
@@ -326,7 +360,13 @@ ul { list-style: none; padding: 0; margin: 0; }
     .p-stats { gap: 2rem; flex-direction: column; }
 }
 .p-stats__item { display: flex; flex-direction: column; }
-.p-stats__number { font-size: 3.5rem; font-weight: 700; color: var(--color-primary); line-height: 1; }
+.p-stats__number { 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    color: var(--color-accent); /* ★ここをオレンジに変更 */
+    line-height: 1; 
+}
+
 .p-stats__label { font-size: 0.9rem; color: var(--color-text-light); margin-top: 0.5rem; }
 
 /* List Check */
@@ -338,7 +378,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 .p-list-check li::before {
     content: "✔";
-    color: var(--color-primary);
+    color: var(--color-accent); /* ★ここをオレンジに変更 */
     position: absolute;
     left: 0;
     font-weight: bold;
