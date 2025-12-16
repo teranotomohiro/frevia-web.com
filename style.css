@@ -7,14 +7,21 @@
     --color-corporate-blue: #003668; /* 紺色：ベースカラー（見出し・背景・ホバー色） */
     --color-accent: #e84233;         /* オレンジ：アクセント（CVボタン・強調） */
 
-    /* --- その他カラー設定 --- */
+    /* --- 派生カラー（ホバー時の色など） --- */
+    --color-accent-hover: #c9302c;   /* オレンジボタンのホバー色（少し濃く） */
+    --color-btn-white-hover: #f0f0f0; /* 白ボタンのホバー色（薄いグレー） */
+    
+    /* --- テキスト・背景・境界線 --- */
     --color-text-main: #333;         /* テキスト：黒 */
     --color-text-light: #666;        /* テキスト：グレー */
     --color-bg-body: #fff;           /* 背景：白 */
     --color-bg-light: #f4f7f6;       /* 背景：薄いグレー */
     --color-bg-dark: #1a1a1a;        /* 背景：黒（汎用） */
-    --color-white: #fff;
-    --color-border: #e0e0e0;
+    --color-bg-placeholder: #ccc;    /* 画像プレースホルダー背景 */
+    
+    --color-white: #fff;             /* 白 */
+    --color-border: #e0e0e0;         /* 通常の境界線 */
+    --color-border-on-dark: rgba(255,255,255,0.1); /* 暗い背景上の境界線 */
 
     /* --- フォント・サイズ設定 --- */
     --font-base: "Noto Sans JP", "Inter", sans-serif;
@@ -57,18 +64,30 @@ ul { list-style: none; padding: 0; margin: 0; }
 .l-container--narrow { max-width: 700px; }
 
 /* Header */
+/* ==========================================================================
+   Header (独立・浮遊・追従型へ変更)
+   ========================================================================== */
 .l-header {
     height: var(--header-height);
     display: flex;
     align-items: center;
-    position: sticky;
-    top: 0;
-    /* ★メインカラー（水色） */
+    
+    /* ★ここが変更ポイント */
+    position: sticky;                  /* スクロールに追従 */
+    top: 1rem;                         /* 画面上端から少し空ける */
+    margin: 1rem auto;                 /* 上下左右に隙間を作る */
+    width: 95%;                        /* 横幅を少し縮める */
+    max-width: var(--container-width); /* コンテンツ幅に合わせる */
+    border-radius: var(--radius-base); /* 角を丸くする */
+    box-shadow: 0 4px 20px var(--color-shadow); /* 影をつけて浮かせる */
+    
     background: var(--color-primary); 
     color: var(--color-white); 
     z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* ボーダーは削除（浮いているため不要） */
+    border-bottom: none;
 }
+
 .l-header__inner {
     display: flex;
     justify-content: space-between;
@@ -129,17 +148,24 @@ ul { list-style: none; padding: 0; margin: 0; }
 
     .l-nav {
         position: fixed;
-        top: var(--header-height);
+        /* ★変更：ヘッダーの下ではなく画面一番上から覆う */
+        top: 0;
         left: 0;
         width: 100%;
-        height: calc(100vh - var(--header-height));
-        /* ★ナビ背景もメインカラー */
+        height: 100vh; /* 画面全体の高さ */
+        
         background: var(--color-primary);
-        padding: 2rem;
+        
+        /* ★変更：中身がヘッダーと被らないように余白を足す */
+        padding-top: calc(var(--header-height) + 3rem);
+        padding-inline: 2rem;
+        
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         overflow-y: auto;
+        z-index: 999; /* ヘッダー(1000)より後ろ、またはハンバーガー(1001)より後ろ */
     }
+    
     .l-nav.is-active {
         transform: translateX(0);
     }
@@ -188,26 +214,27 @@ ul { list-style: none; padding: 0; margin: 0; }
     font-weight: 700;
     cursor: pointer;
     border: none;
+    transition: background-color 0.3s, opacity 0.3s;
 }
-/* 通常ボタン：水色 -> ホバーで紺色 */
+
+/* 通常ボタン：水色 -> ホバーでオレンジ（アクセント） */
 .c-btn--primary { 
     background: var(--color-primary); 
     color: var(--color-white); 
 }
+.c-btn--primary:hover { 
+    background: var(--color-accent);
+}
 
-/* アクセントボタン（オレンジ）：一番目立たせたいボタン用 */
+/* アクセントボタン（オレンジ） */
 .c-btn--accent {
     background: var(--color-accent);
     color: var(--color-white);
 }
 .c-btn--accent:hover {
-    background: #c9302c; /* 少し濃いオレンジ */
+    /* ★修正：直接指定を排除 */
+    background: var(--color-accent-hover);
     opacity: 1;
-}
-
-/* ホバー時はアクセントカラー（オレンジ）にして強調 */
-.c-btn--primary:hover { 
-    background: var(--color-accent);
 }
 
 /* 白ボタン：白 -> ホバーで薄グレー（文字は水色） */
@@ -216,18 +243,18 @@ ul { list-style: none; padding: 0; margin: 0; }
     color: var(--color-primary);
 }
 .c-btn--white:hover {
-    background: #f0f0f0;
+    /* ★修正：直接指定を排除 */
+    background: var(--color-btn-white-hover);
 }
 .c-btn--large { padding: 1em 3em; }
 .c-btn--wide { width: 100%; }
 
-/* 見出し：紺色に変更して引き締め */
+/* 見出し */
 .c-heading { 
     font-size: clamp(1.75rem, 5vw, 2rem); 
     margin-bottom: 2rem; 
     text-align: center; 
     color: var(--color-corporate-blue);
-    /* ★追加：オレンジの下線を引く */
     position: relative;
     padding-bottom: 10px;
 }
@@ -237,22 +264,16 @@ ul { list-style: none; padding: 0; margin: 0; }
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); /* 中央寄せ */
-    width: 60px; /* 線の長さ */
-    height: 4px; /* 線の太さ */
-    background-color: var(--color-accent); /* オレンジ色 */
-    border-radius: 2px;
-}
-
-/* 左揃えの見出し用調整 */
-.c-heading--left::after {
-    left: 50%;
     transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
 }
 
 .c-heading--white { color: var(--color-white); }
 
-/* スローガン：水色 */
+/* スローガン */
 .c-slogan {
     font-size: clamp(1.4rem, 4vw, 2.5rem);
     font-weight: 700;
@@ -268,11 +289,12 @@ ul { list-style: none; padding: 0; margin: 0; }
 .c-text-white { color: var(--color-white); }
 .c-text-center { text-align: center; }
 
-/* 必須バッジ：アクセント（オレンジ） */
+/* 必須バッジ */
 .c-badge-required {
     font-size: 0.75rem;
-    background: var(--color-accent); /* ★ここを変更 */
-    color: #fff;
+    background: var(--color-accent);
+    /* ★修正：直接指定を排除 */
+    color: var(--color-white);
     padding: 2px 6px;
     border-radius: 4px;
     margin-left: 0.5em;
@@ -288,12 +310,12 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 .p-section--bg-light { background: var(--color-bg-light); }
-/* コンタクト背景：紺色 */
+/* コンタクト背景：水色単色 */
 .p-section--dark {
     background: var(--color-primary);
 }
 
-/* Hero：水色から紺色のグラデーション */
+/* Hero */
 .p-hero {
     background: linear-gradient(135deg, var(--color-primary), var(--color-corporate-blue));
     color: var(--color-white);
@@ -312,10 +334,11 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 .c-card {
-    background: #fff;
+    /* ★修正：直接指定を排除 */
+    background: var(--color-white);
     padding: 2rem;
     border-radius: var(--radius-base);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* 影は透明度が絡むため今回は許容 */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -325,7 +348,8 @@ ul { list-style: none; padding: 0; margin: 0; }
     margin-bottom: 1.5rem;
     border-radius: 4px;
     overflow: hidden;
-    background-color: #f4f4f4;
+    /* ★修正：#f4f4f4 を既存の var(--color-bg-light) に統一 */
+    background-color: var(--color-bg-light);
 }
 .c-card__image {
     width: 100%;
@@ -378,7 +402,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 .p-list-check li::before {
     content: "✔";
-    color: var(--color-accent); /* ★ここをオレンジに変更 */
+    color: var(--color-accent);
     position: absolute;
     left: 0;
     font-weight: bold;
@@ -394,11 +418,13 @@ ul { list-style: none; padding: 0; margin: 0; }
 @media(min-width: 768px) { .p-split { grid-template-columns: 1fr 1fr; } }
 
 .c-placeholder-img {
-    background: #ccc;
+    /* ★修正：直接指定を排除 */
+    background: var(--color-bg-placeholder);
     aspect-ratio: 1/1;
     display: flex; align-items: center; justify-content: center;
     border-radius: var(--radius-base);
-    color: #666;
+    /* ★修正：直接指定を排除 */
+    color: var(--color-text-light);
 }
 .p-rep-name { font-size: 1.5rem; margin-top: 0; }
 .p-rep-name__en { font-size: clamp(1.5rem, 5vw, 3rem); color: var(--color-text-main); margin-left: 0.5rem; display: inline-block; }
@@ -420,7 +446,12 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 /* Form */
-.p-form { background: #fff; padding: 2rem; border-radius: var(--radius-base); }
+.p-form { 
+    /* ★修正：直接指定を排除 */
+    background: var(--color-white); 
+    padding: 2rem; 
+    border-radius: var(--radius-base); 
+}
 @media (max-width: 768px) { .p-form { padding: 1.5rem; } }
 
 .p-form__group { margin-bottom: 1.5rem; }
@@ -443,7 +474,7 @@ ul { list-style: none; padding: 0; margin: 0; }
    Footer
    ========================================================================== */
 .l-footer {
-    background-color: var(--color-primary); /* ★メインカラー（水色） */
+    background-color: var(--color-primary); 
     color: var(--color-white);
     padding: 3rem 0;
     text-align: center;
