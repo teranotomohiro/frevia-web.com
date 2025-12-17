@@ -91,6 +91,10 @@ ul { list-style: none; padding: 0; margin: 0; }
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    width: 100%;          /* 90%から100%に変更 */
+    max-width: none;      /* 最大幅の制限を解除 */
+    padding-inline: 2rem; /* 端っこすぎないように少し余白を入れる */
 }
 
 /* ==========================================================================
