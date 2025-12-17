@@ -117,7 +117,7 @@ ul { list-style: none; padding: 0; margin: 0; }
         background: transparent;
         border: none;
         cursor: pointer;
-        z-index: 1001;
+        z-index: 1200;
         padding: 0;
     }
     .c-hamburger__line {
@@ -145,6 +145,7 @@ ul { list-style: none; padding: 0; margin: 0; }
         transform: rotate(-45deg);
     }
 
+    
     .l-nav {
         position: fixed;
         /* ★変更：ヘッダーの下ではなく画面一番上から覆う */
@@ -162,7 +163,23 @@ ul { list-style: none; padding: 0; margin: 0; }
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         overflow-y: auto;
-        z-index: 999; /* ヘッダー(1000)より後ろ、またはハンバーガー(1001)より後ろ */
+        z-index: 1100; /* ヘッダー(1000)より後ろ、またはハンバーガー(1001)より後ろ */
+    }
+
+    .l-nav__logo {
+    display: none; /* PCでは非表示 */
+    }
+
+    @media (max-width: 768px) {
+        .l-nav__logo {
+            display: block;
+            margin-bottom: 3rem; /* メニューリストとの隙間 */
+            text-align: center;  /* 中央揃え */
+        }
+        .l-nav__logo img {
+            margin: 0 auto;
+            width: 140px; /* ロゴの大きさ調整 */
+        }
     }
 
     .l-nav.is-active {
