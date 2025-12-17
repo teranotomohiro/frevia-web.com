@@ -125,7 +125,7 @@ ul { list-style: none; padding: 0; margin: 0; }
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: var(--color-white);
+        background-color: var(--color-primary);
         transition: 0.3s;
         border-radius: 2px;
     }
@@ -154,7 +154,7 @@ ul { list-style: none; padding: 0; margin: 0; }
         height: 100vh; /* 画面全体の高さ */
         
         background: var(--color-primary);
-        
+        color: var(--color-bg-body);
         /* ★変更：中身がヘッダーと被らないように余白を足す */
         padding-top: calc(var(--header-height) + 3rem);
         padding-inline: 2rem;
