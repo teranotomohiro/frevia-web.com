@@ -34,6 +34,12 @@
     --header-height: 70px;
 }
 
+html {
+    scroll-behavior: smooth;       /* クリック時にスルスル移動させる */
+    scroll-padding-top: 120px;     /* 移動後にヘッダーの分だけ位置をずらす */
+}
+
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
