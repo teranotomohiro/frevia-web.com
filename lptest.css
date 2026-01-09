@@ -195,6 +195,32 @@ img {
     line-height: 0;
 }
 
+.photo-inst img {
+    /* 描画のちらつきを抑える設定 */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    
+    /* もし上記で直らない場合は、下の1行のコメントアウト(//)を外して試してください */
+    /* image-rendering: pixelated; */
+}
+
+/* 余白を持たせて通常通り表示するためのクラス */
+.photo-inst.is-padded {
+    /* ネガティブマージン（-20px）をリセットして0に戻す */
+    margin-left: 0;
+    margin-right: 0;
+    
+    /* 幅の計算を元に戻す */
+    width: 100%;
+    
+    /* 必要であれば枠線や背景を復活させる（不要なら削除してください） */
+    /* background: #f8f9fa; */
+    /* border: 1px solid #ddd; */
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+}
+
 /* ==========================================================================
    CTA Buttons
    ========================================================================== */
@@ -274,18 +300,4 @@ video {
     display: block; /* 画像と同じ挙動にする */
 }
 
-/* 余白を持たせて通常通り表示するためのクラス */
-.photo-inst.is-padded {
-    /* ネガティブマージン（-20px）をリセットして0に戻す */
-    margin-left: 0;
-    margin-right: 0;
-    
-    /* 幅の計算を元に戻す */
-    width: 100%;
-    
-    /* 必要であれば枠線や背景を復活させる（不要なら削除してください） */
-    /* background: #f8f9fa; */
-    /* border: 1px solid #ddd; */
-    /* padding: 10px; */
-    /* border-radius: 5px; */
-}
+
