@@ -1,0 +1,256 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   Variables & Reset
+   ========================================================================== */
+:root {
+    --navy: #002B5B;
+    --gold: #A68942;
+    --text: #333333;
+    --light-bg: #F4F7F9;
+    --white: #FFFFFF;
+    --accent: #D62828;
+    --trial-box: #E3F2FD;
+    --cta-gradient-start: #ff5e3a;
+    --cta-gradient-end: #ff2a68;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.9;
+    color: var(--text);
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   Layout Containers
+   ========================================================================== */
+.lp-wrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.lp-section {
+    padding: 50px 20px;
+    border-bottom: 8px solid var(--light-bg);
+}
+
+/* ==========================================================================
+   Typography & Text Elements
+   ========================================================================== */
+.lp-heading {
+    font-size: 22px;
+    color: var(--navy);
+    border-left: 6px solid var(--gold);
+    padding-left: 15px;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.lp-text {
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.marker {
+    background: linear-gradient(transparent 70%, #fff176 70%);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+/* 吹き出し */
+.speech-bubble {
+    background: #EEF2F6;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    font-style: italic;
+}
+
+/* ポイントボックス */
+.point-box {
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.point-box--noborder {
+    border: none;
+    background: #f9f9f9;
+}
+
+.point-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.point-body {
+    padding: 20px;
+    background: #fff;
+}
+/* ボーダーなし時の背景色調整 */
+.point-box--noborder .point-body {
+    background: transparent;
+}
+
+/* トライアル情報 */
+.trial-info {
+    background: var(--trial-box);
+    border: 2px dashed var(--navy);
+    padding: 20px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+/* リスト */
+.lp-list {
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Table (Comparison)
+   ========================================================================== */
+.comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 13px;
+}
+
+.comp-table th, 
+.comp-table td {
+    border: 1px solid #ddd;
+    padding: 12px 5px;
+    text-align: center;
+}
+
+.shiroru-col {
+    background: #fff9e6;
+    border: 2px solid var(--gold) !important;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.shiroru-col::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 50%;
+    height: 300%;
+    background: rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* ==========================================================================
+   Images & Placeholders
+   ========================================================================== */
+.photo-inst {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+/* ==========================================================================
+   CTA Buttons
+   ========================================================================== */
+.cta-box {
+    margin: 30px auto;
+}
+
+.cta-btn {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(to bottom, var(--cta-gradient-start), var(--cta-gradient-end));
+    color: #fff !important;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    animation: float 3s infinite;
+}
+
+.cta-sub {
+    font-size: 13px;
+    font-weight: normal;
+    display: block;
+    margin-top: 5px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 固定フッターCTA */
+.fixed-cta {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 640px;
+    background: rgba(255,255,255,0.9);
+    padding: 10px 0;
+    z-index: 1000;
+    text-align: center;
+    /* lp-wrapperの外に出ても中央寄せするように調整 */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fixed-cta a {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    background: var(--cta-gradient-end);
+    color: #fff;
+    padding: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.sb-legal-footer {
+    background: #f4f4f4;
+    padding: 40px 20px 100px;
+    font-size: 10px;
+    color: #777;
+    line-height: 1.6;
+}
