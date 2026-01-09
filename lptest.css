@@ -172,14 +172,27 @@ img {
    Images & Placeholders
    ========================================================================== */
 .photo-inst {
-    background: #f8f9fa;
-    border: 1px solid #ddd;
-    color: #666;
-    padding: 20px;
-    margin: 20px 0;
-    text-align: center;
-    font-size: 13px;
-    border-radius: 5px;
+    /* --- 枠線と背景をリセット --- */
+    background: transparent; /* 背景色を透明に */
+    border: none;            /* 枠線を消す */
+    padding: 0;              /* 内側の余白をなくす */
+    border-radius: 0;        /* 角丸をなくす */
+    
+    /* --- 画面幅いっぱい（フルワイド）にする設定 --- */
+    /* 親要素(.lp-section)の左右padding(20px)を打ち消すためにマイナスを指定 */
+    margin-left: -20px;
+    margin-right: -20px;
+    
+    /* 幅を「親要素の幅(100%) + 左右の打ち消し分(40px)」に広げる */
+    width: calc(100% + 40px);
+    max-width: none;         /* 最大幅の制限を解除 */
+    
+    /* 上下の余白（お好みで調整してください） */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+    /* 中の画像を隙間なく表示 */
+    line-height: 0;
 }
 
 /* ==========================================================================
