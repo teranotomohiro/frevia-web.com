@@ -202,7 +202,7 @@ img {
     transform: translateZ(0);
     
     /* もし上記で直らない場合は、下の1行のコメントアウト(//)を外して試してください */
-    image-rendering: pixelated;
+    /*　image-rendering: pixelated; */
 }
 
 /* 余白を持たせて通常通り表示するためのクラス */
