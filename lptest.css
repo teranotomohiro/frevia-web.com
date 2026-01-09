@@ -254,3 +254,9 @@ img {
     color: #777;
     line-height: 1.6;
 }
+
+video {
+    max-width: 100%;
+    height: auto;
+    display: block; /* 画像と同じ挙動にする */
+}
