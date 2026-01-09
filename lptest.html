@@ -3,155 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root {
-            --navy: #002B5B; --gold: #A68942; --text: #333333;
-            --light-bg: #F4F7F9; --white: #FFFFFF; --accent: #D62828;
-            --trial-box: #E3F2FD;
-        }
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; line-height: 1.9; color: var(--text); background: #f0f2f5; margin: 0; padding: 0; }
-        .lp-wrapper { max-width: 640px; margin: 0 auto; background: var(--white); box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        section { padding: 50px 20px; border-bottom: 8px solid var(--light-bg); }
-        h2 { font-size: 22px; color: var(--navy); border-left: 6px solid var(--gold); padding-left: 15px; margin-bottom: 30px; line-height: 1.4; }
-        p { margin-bottom: 25px; font-size: 16px; text-align: justify; }
-        .marker { background: linear-gradient(transparent 70%, #fff176 70%); font-weight: bold; }
-        
-        /* 慎重派向け：情報の構造化パーツ */
-        .speech-bubble { background: #EEF2F6; padding: 20px; border-radius: 10px; margin: 25px 0; font-style: italic; }
-        .point-box { border: 2px solid var(--navy); border-radius: 8px; margin: 30px 0; overflow: hidden; }
-        .point-header { background: var(--navy); color: #fff; padding: 10px; text-align: center; font-weight: bold; }
-        .point-body { padding: 20px; background: #fff; }
-        
-        /* トライアル明示ボックス */
-        .trial-info { background: var(--trial-box); border: 2px dashed var(--navy); padding: 20px; margin: 30px 0; text-align: center; }
-        
-        /* アニメーション比較表 */
-        .comp-table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 13px; }
-        .comp-table th, .comp-table td { border: 1px solid #ddd; padding: 12px 5px; text-align: center; }
-        .shiroru-col { background: #fff9e6; border: 2px solid var(--gold) !important; position: relative; overflow: hidden; }
-        .shiroru-col::after { content: ""; position: absolute; top: -100%; left: -100%; width: 50%; height: 300%; background: rgba(255,255,255,0.4); transform: rotate(45deg); animation: shine 4s infinite; }
-        @keyframes shine { 0% {left:-100%;} 20% {left:150%;} 100% {left:150%;} }
-
-        /* CTA */
-        .cta-btn { display: block; width: 90%; margin: 30px auto; padding: 20px; background: linear-gradient(to bottom, #ff5e3a, #ff2a68); color: #fff !important; text-align: center; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); animation: float 3s infinite; }
-        @keyframes float { 0%,100% {transform:translateY(0);} 50% {transform:translateY(-10px);} }
-        .fixed-cta { position: fixed; bottom: 0; width: 100%; max-width: 640px; background: rgba(255,255,255,0.9); padding: 10px 0; z-index: 1000; text-align: center; }
-        .fixed-cta a { display: block; width: 90%; margin: 0 auto; background: #ff2a68; color: #fff; padding: 15px; text-decoration: none; font-weight: bold; border-radius: 5px; }
-
-        .photo-inst { background: #f8f9fa; border: 1px solid #ddd; color: #666; padding: 20px; margin: 20px 0; text-align: center; font-size: 13px; border-radius: 5px; }
-        .sb-legal-footer { background: #f4f4f4; padding: 40px 20px 100px; font-size: 10px; color: #777; line-height: 1.6; }
-    </style>
+    <title>SHIRORU トライアルキャンペーン</title>
+    <link rel="stylesheet" href="lptest.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
 
 <div class="lp-wrapper">
 
-    <section>
+    <section class="lp-section">
         <div class="photo-inst">
             <img src="images_lptest/Gemini_Generated_Image_vxathgvxathgvxat.png" alt="夜の電車の窓に映る疲れた横顔" width="100%">
         </div>
 
-        <h2>夕方17時45分。京葉線の窓に映った「知らない女性」に、私は言葉を失った。</h2>
+        <h2 class="lp-heading">夕方17時45分。京葉線の窓に映った「知らない女性」に、私は言葉を失った。</h2>
         
         <div class="speech-bubble">
             「朝、あんなに念入りにファンデを塗り込んだのに…」<br>
             「鏡を見るのが、いつの間にか苦痛になっていた」
         </div>
 
-        <p>佐藤由美さん（42歳・時短勤務）は、決して美容を怠ってきたわけではありません。慎重派の彼女は、1本1万円以上する高級美容液を「自分への投資」として選び、大切に使い続けてきました。</p>
+        <p class="lp-text">佐藤由美さん（42歳・時短勤務）は、決して美容を怠ってきたわけではありません。慎重派の彼女は、1本1万円以上する高級美容液を「自分への投資」として選び、大切に使い続けてきました。</p>
         
-        <p>しかし現実は、朝から毛穴にファンデが落ち込み、夕方には肌が灰色に沈んでいく毎日 。彼女が陥っていたのは、40代女性が最も陥りやすい<span class="marker">「点のケア」という名の非効率な投資</span>でした。</p>
+        <p class="lp-text">しかし現実は、朝から毛穴にファンデが落ち込み、夕方には肌が灰色に沈んでいく毎日 。彼女が陥っていたのは、40代女性が最も陥りやすい<span class="marker">「点のケア」という名の非効率な投資</span>でした。</p>
     </section>
 
-    <section>
+    <section class="lp-section">
         <div class="photo-inst">
-            【画像指示 2：カチカチの休耕田】<br>
-            ひび割れた土に水を撒いても、表面で弾かれている様子を描いた図解 [cite: 921]。
+            <img src="images_lptest/Gemini_Generated_Image_5xs0q55xs0q55xs0.png" alt="肌のバリア機能のイメージ図" width="100%">
         </div>
 
-        <h2>なぜ、あなたの「1万円の美容液」は浸透（※2）しないのか？</h2>
-        <p>由美さんが直面している「夕方のくすみ（※3）」の正体は、加齢による**「角質の重層化」**にあります [cite: 892, 919]。</p>
-        <p>20代の肌を「雨を吸い込むふかふかの土」とするなら、40代の肌は、長年太陽に焼かれて石のように固まった「休耕田」です。想像してみてください。その石のような土の上に、どれほど高級な栄養剤を振り撒いても、中まで届くでしょうか？ [cite: 921]</p>
+        <h2 class="lp-heading">なぜ、あなたの「1万円の美容液」は浸透（※2）しないのか？</h2>
+        <p class="lp-text">由美さんが直面している「夕方のくすみ（※3）」の正体は、加齢による<strong>「角質の重層化」</strong>にあります。</p>
+        <p class="lp-text">20代の肌を「雨を吸い込むふかふかの土」とするなら、40代の肌は、長年太陽に焼かれて石のように固まった「休耕田」です。想像してみてください。その石のような土の上に、どれほど高級な栄養剤を振り撒いても、中まで届くでしょうか？</p>
         
-        <p>表面で弾かれ、蒸発するのを待つだけ。由美さんが必要としていたのは、単一の美容液ではなく、<span class="marker">「土壌を耕し、成分を届け、鍵をかける」という一連の再構築プロセス</span>だったのです [cite: 922, 923]。</p>
+        <p class="lp-text">表面で弾かれ、蒸発するのを待つだけ。由美さんが必要としていたのは、単一の美容液ではなく、<span class="marker">「土壌を耕し、成分を届け、鍵をかける」という一連の再構築プロセス</span>だったのです。</p>
     </section>
 
-    <section>
-        <h2>慎重派のあなたにこそ知ってほしい、3ステップ・シナジーの合理性</h2>
+    <section class="lp-section">
+        <h2 class="lp-heading">慎重派のあなたにこそ知ってほしい、3ステップ・シナジーの合理性</h2>
         
         <div class="photo-inst">
-            【画像指示 3：ステップ全体の流れ】<br>
-            1.耕す（洗顔）→ 2.満たす（化粧水）→ 3.閉じる（クリーム）<br>
-            それぞれのテクスチャー（泡・滴・膜）を想起させるアイコン図 [cite: 923]。
+            <img src="images_lptest/Gemini_Generated_Image_jzk72mjzk72mjzk7.png" alt="3ステップのスキンケアリレー図解" width="100%">
         </div>
 
         <div class="point-box">
             <div class="point-header">STEP 1：落とす・耕す（クリスタルホイップ）</div>
             <div class="point-body">
-                <div class="photo-inst">【画像指示 4】10円玉を乗せても沈まない濃密な炭酸泡 [cite: 238]。</div>
-                毛穴より小さい10,000ppmの高濃度炭酸泡が、固まった角質を優しく解きほぐします [cite: 178, 236]。これは「通り道」を作る工程。これなしでは、どんな成分も肌の表面で渋滞を起こします [cite: 177, 629]。
+                <div class="photo-inst">※ここに泡洗顔の画像などを挿入</div>
+                毛穴より小さい10,000ppmの高濃度炭酸泡が、固まった角質を優しく解きほぐします。これは「通り道」を作る工程。これなしでは、どんな成分も肌の表面で渋滞を起こします。
             </div>
         </div>
 
         <div class="point-box">
             <div class="point-header">STEP 2：満たす・浸透※2（クリスタルエッセンスウォーター）</div>
             <div class="point-body">
-                <div class="photo-inst">【画像指示 5】角質層の隙間へ吸い込まれるカプセルのイメージCG [cite: 855]。</div>
-                道が空いた瞬間に、角質細胞の1,000分の1サイズの**「クリスタルブーストカプセル」**が有効成分（安定型ビタミンC誘導体）をシミ（※1）の元へ最短距離で届けます 。
+                <div class="photo-inst">
+                     <img src="images_lptest/Gemini_Generated_Image_7fwdmn7fwdmn7fwd.png" alt="ナノカプセルの浸透図解" width="100%">
+                </div>
+                道が空いた瞬間に、角質細胞の1,000分の1サイズの<strong>「クリスタルブーストカプセル」</strong>が有効成分（安定型ビタミンC誘導体）をシミ（※1）の元へ最短距離で届けます。
             </div>
         </div>
 
         <div class="point-box">
             <div class="point-header">STEP 3：閉じ込める・保護（クリスタルモイスチャークリーム）</div>
             <div class="point-body">
-                <div class="photo-inst">【画像指示 6】潤いの膜が肌をラッピングしているイメージ [cite: 271, 721]。</div>
-                仕上げにアルブチンと3種のセラミドで「鍵」をかけます。40代の蒸発しやすい肌を封印し、夜まで成分を逃がしません 。
+                <div class="photo-inst">※ここにクリームや保護膜の画像などを挿入</div>
+                仕上げにアルブチンと3種のセラミドで「鍵」をかけます。40代の蒸発しやすい肌を封印し、夜まで成分を逃がしません。
             </div>
         </div>
     </section>
 
-    <section>
-        <h2>「医薬部外品」と「LDK第1位」。これが慎重派への誠実な回答。</h2>
+    <section class="lp-section">
+        <h2 class="lp-heading">「医薬部外品」と「LDK第1位」。これが慎重派への誠実な回答。</h2>
         <div class="photo-inst">
-            【画像指示 7】「LDK the Beauty」第1位のロゴと誌面掲載イメージ [cite: 858, 926]。
+            ※ここにLDK受賞ロゴなどの画像を挿入
         </div>
-        <p>由美さんは、成分表を見て初めて納得しました。そこには、厚生労働省が効果・効能を認めた**「W美白（※1）× W肌荒れ予防」**の4つの有効成分が、緻密に配置されていたからです。</p>
+        <p class="lp-text">由美さんは、成分表を見て初めて納得しました。そこには、厚生労働省が効果・効能を認めた<strong>「W美白（※1）× W肌荒れ予防」</strong>の4つの有効成分が、緻密に配置されていたからです。</p>
         
         <table class="comp-table">
             <thead>
                 <tr><th>比較項目</th><th>デパコス</th><th class="shiroru-col">SHIRORU</th><th>プチプラ</th></tr>
             </thead>
             <tbody>
-                <tr><td>評価</td><td>ブランド力 [cite: 863]</td><td class="shiroru-col">LDK 1位 [cite: 858]</td><td>評価不足</td></tr>
-                <tr><td>処方</td><td>一般化粧品</td><td class="shiroru-col">医薬部外品 [cite: 842]</td><td>一般品 [cite: 866]</td></tr>
-                <tr><td>浸透技術</td><td>高コスト [cite: 863]</td><td class="shiroru-col">1/1000ナノ [cite: 853]</td><td>技術なし</td></tr>
-                <tr><td>開始価格</td><td>約1.5万円〜</td><td class="shiroru-col">980円(試用) [cite: 844]</td><td>2,000円〜</td></tr>
+                <tr><td>評価</td><td>ブランド力</td><td class="shiroru-col">LDK 1位</td><td>評価不足</td></tr>
+                <tr><td>処方</td><td>一般化粧品</td><td class="shiroru-col">医薬部外品</td><td>一般品</td></tr>
+                <tr><td>浸透技術</td><td>高コスト</td><td class="shiroru-col">1/1000ナノ</td><td>技術なし</td></tr>
+                <tr><td>開始価格</td><td>約1.5万円〜</td><td class="shiroru-col">980円(試用)</td><td>2,000円〜</td></tr>
             </tbody>
         </table>
     </section>
 
-    <section>
+    <section class="lp-section">
         <div class="trial-info">
             <strong>【慎重派の皆様へ：必ずご確認ください】</strong><br>
-            お届けするのは本品（フルサイズ）ではありません 。<br>
-            通常合計12,100円（相当・税込）のラインを、まずは**「7日間じっくり検証」**するための特別なトライアルセットです 。
+            お届けするのは本品（フルサイズ）ではありません。<br>
+            通常合計12,100円（相当・税込）のラインを、まずは<strong>「7日間じっくり検証」</strong>するための特別なトライアルセットです。
         </div>
 
-        <h2>なぜ、12,100円相当が「980円（税込1,078円）」なのか。</h2>
-        <p>これは安売りではなく、ブランドの「品質への自信」からくる投資です。一度この3ステップを体験すれば、もう以前のケアには戻れない。その圧倒的な継続率に裏打ちされた合理的な価格設定です。</p>
+        <h2 class="lp-heading">なぜ、12,100円相当が「980円（税込1,078円）」なのか。</h2>
+        <p class="lp-text">これは安売りではなく、ブランドの「品質への自信」からくる投資です。一度この3ステップを体験すれば、もう以前のケアには戻れない。その圧倒的な継続率に裏打ちされた合理的な価格設定です。</p>
 
         <div class="photo-inst">
             【画像指示 8：トライアルセットの全貌】<br>
-            手のひらサイズのミニボトル3点と、特典のフェイスマスクが並んだ写真 [cite: 325, 782]。
+            手のひらサイズのミニボトル3点と、特典のフェイスマスクが並んだ写真
         </div>
 
         <h3>契約に関する「客観的事実」のみを提示します</h3>
-        <p>佐藤由美さんが最も恐れていた「定期便の罠」を解消するため、以下の事実をお約束します [cite: 893, 901, 929]。</p>
-        <div class="point-box" style="background:#f9f9f9; border:none;">
-            <ul>
-                <li><strong>継続回数の縛り（約束）なし</strong>：初回のみで停止可能です [cite: 10, 931]。</li>
-                <li><strong>24時間オンライン完結</strong>：電話での引き止めはなく、マイページから1分で完了します 。</li>
-                <li><strong>14日間全額返金保証</strong>：お肌に合わない場合は、代金を返金いたします [cite: 362, 931]。</li>
+        <p class="lp-text">佐藤由美さんが最も恐れていた「定期便の罠」を解消するため、以下の事実をお約束します。</p>
+        <div class="point-box point-box--noborder">
+            <ul class="lp-list">
+                <li><strong>継続回数の縛り（約束）なし</strong>：初回のみで停止可能です。</li>
+                <li><strong>24時間オンライン完結</strong>：電話での引き止めはなく、マイページから1分で完了します。</li>
+                <li><strong>14日間全額返金保証</strong>：お肌に合わない場合は、代金を返金いたします。</li>
             </ul>
         </div>
     </section>
@@ -159,22 +124,20 @@
     <div class="cta-box">
         <a href="{{link}}" class="cta-btn">
             7日間トライアルセットを試す<br>
-            <span style="font-size:13px; font-weight:normal;">税込1,078円・送料無料・回数縛りなし</span>
+            <span class="cta-sub">税込1,078円・送料無料・回数縛りなし</span>
         </a>
     </div>
 
     <div class="fixed-cta"><a href="{{link}}">まずは980円で「7日間」試してみる ＞</a></div>
 
     <div class="sb-legal-footer">
-        <p>※個人の感想であり、効果を保証するものではありません [cite: 913]。<br>
-        ※1 メラニンの生成を抑え、シミ・そばかすを防ぐ [cite: 847, 860, 935]。<br>
-        ※2 角質層まで [cite: 855, 935]。<br>
-        ※3 乾燥によるキメの乱れ [cite: 889, 892]。<br>
-        ※4 洗顔による汚れ落ちの合計 [cite: 177]。<br>
-        ※5 LDK the Beauty 2024年7月号 泡洗顔料部門 [cite: 66, 858]。<br>
-        ※価格表記：通常セット価格12,100円（相当・税込）を7日間分の容量で換算 [cite: 933]。お届けは使い切りサイズ（トライアルセット）です 。<br>
-        ※解約は次回お届けの10日前までにマイページにてお手続きください 。</p>
-        <p>© SHIRORU Co., Ltd. All Rights Reserved.</p>
+        <p>※個人の感想であり、効果を保証するものではありません。<br>
+        ※1 メラニンの生成を抑え、シミ・そばかすを防ぐ。<br>
+        ※2 角質層まで。<br>
+        ※3 乾燥によるキメの乱れ。<br>
+        ※価格表記：通常セット価格12,100円（相当・税込）を7日間分の容量で換算。お届けは使い切りサイズ（トライアルセット）です。<br>
+        ※解約は次回お届けの10日前までにマイページにてお手続きください。</p>
+        <p>&copy; SHIRORU Co., Ltd. All Rights Reserved.</p>
     </div>
 </div>
 
