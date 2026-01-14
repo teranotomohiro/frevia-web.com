@@ -195,15 +195,15 @@ img {
     line-height: 0;
 }
 
-.photo-inst img {
+/*.photo-inst img {
     /* 描画のちらつきを抑える設定 */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
+    /*-webkit-backface-visibility: hidden;
+    /*backface-visibility: hidden;
+    /*transform: translateZ(0);
     
     /* もし上記で直らない場合は、下の1行のコメントアウト(//)を外して試してください */
     /*　image-rendering: pixelated; */
-}
+/*}
 
 /* 余白を持たせて通常通り表示するためのクラス */
 .photo-inst.is-padded {
