@@ -322,12 +322,12 @@ body {
 }
 
 /* ==========================================================================
-   #Media Components (画像・動画装飾)
+   #Media Components (画像・動画装飾) - 横幅いっぱい版
    ========================================================================== */
 
-/* メディアコンテナの基本設定 */
+/* 画像コンテナ：親要素のpadding(20px)を打ち消して横幅いっぱいに広げる */
 .c-figure-media {
-    margin: 30px 0;
+    margin: 30px -20px; /* 上下30px, 左右-20px */
     position: relative;
     text-align: center;
 }
@@ -336,56 +336,46 @@ body {
 .c-figure-media img,
 .c-figure-media video {
     display: block;
-    width: 100%;
+    width: 100%;       /* コンテナ幅いっぱい */
     height: auto;
-    border-radius: 8px; /* 角丸 */
-    border: 1px solid rgba(0, 0, 0, 0.05); /* うっすらとした枠線 */
+    border-radius: 0;  /* 端まで表示するため角丸をなくす */
+    border: none;      /* 枠線もなくして没入感を高める */
 }
 
-/* 影付き（実績画像など強調したい場合） */
-.c-figure-media--shadow img {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 立体的な影 */
-    border: none;
-}
-
-/* 動画エリアの装飾（ここが足りていませんでした） */
+/* 動画エリアの装飾（横幅いっぱい用） */
 .c-figure-media--video {
-    padding: 5px;
-    border: 2px solid var(--color-accent); /* ピンク色の枠線 */
-    border-radius: 12px;
     background: #fff;
-    position: relative; /* バッジの位置基準 */
+    padding: 0;        /* 内部の余白もゼロに */
+    border: none;      /* 枠線を削除 */
+    /* 上下の境界線だけ残してエリアを区切るデザインに変更 */
+    border-top: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
 }
 
 .c-figure-media--video video {
-    border-radius: 6px; /* 内側の角丸 */
-    display: block; /* 余白除去 */
+    border-radius: 0; /* 動画自体の角丸も削除 */
 }
 
-/* 動画上のバッジ（「No.1の弾力」など） */
+/* 影付き（実績画像など）は少し内側に戻すか、影の出方を調整 */
+.c-figure-media--shadow img {
+    /* 影付き画像も横幅いっぱいにしたい場合はこのままでOK */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* バッジの位置調整（端まで広がったため少し内側に寄せる） */
 .c-video-badge {
-    position: absolute;
-    top: -15px;
-    right: -10px;
-    background: var(--color-price); /* 赤色背景 */
-    color: #fff;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 50px;
-    font-size: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    top: 10px;    /* 枠外ではなく動画の上に重ねる */
+    right: 10px;  /* 端すぎないように余白確保 */
     z-index: 10;
-    /* ふわふわ動くアニメーション */
-    animation: floating 3s ease-in-out infinite;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* キャプション（注釈） */
+/* キャプション */
 .c-figure-media__caption {
-    display: block;
-    text-align: center;
     font-size: 12px;
     color: var(--color-text-light);
     margin-top: 8px;
+    padding: 0 20px; /* キャプションだけは読みやすいように余白を持たせる */
 }
 
 /* 浮遊アニメーション定義 */
