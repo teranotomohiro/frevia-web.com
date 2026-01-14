@@ -322,18 +322,19 @@ body {
 }
 
 /* ==========================================================================
-   #Media Components (画像装飾用)
+   #Media Components (画像・動画装飾)
    ========================================================================== */
 
-/* 画像コンテナの基本設定 */
+/* メディアコンテナの基本設定 */
 .c-figure-media {
     margin: 30px 0;
     position: relative;
     text-align: center;
 }
 
-/* 画像の共通スタイル */
-.c-figure-media img {
+/* 画像・動画の共通スタイル */
+.c-figure-media img,
+.c-figure-media video {
     display: block;
     width: 100%;
     height: auto;
@@ -347,7 +348,21 @@ body {
     border: none;
 }
 
-/* バッジ（「No.1の弾力」など） */
+/* 動画エリアの装飾（ここが足りていませんでした） */
+.c-figure-media--video {
+    padding: 5px;
+    border: 2px solid var(--color-accent); /* ピンク色の枠線 */
+    border-radius: 12px;
+    background: #fff;
+    position: relative; /* バッジの位置基準 */
+}
+
+.c-figure-media--video video {
+    border-radius: 6px; /* 内側の角丸 */
+    display: block; /* 余白除去 */
+}
+
+/* 動画上のバッジ（「No.1の弾力」など） */
 .c-video-badge {
     position: absolute;
     top: -15px;
@@ -359,6 +374,7 @@ body {
     border-radius: 50px;
     font-size: 14px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 10;
     /* ふわふわ動くアニメーション */
     animation: floating 3s ease-in-out infinite;
 }
