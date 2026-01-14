@@ -320,3 +320,60 @@ body {
 .c-info-box__list li:last-child {
     margin-bottom: 0;
 }
+
+/* ==========================================================================
+   #Media Components (画像装飾用)
+   ========================================================================== */
+
+/* 画像コンテナの基本設定 */
+.c-figure-media {
+    margin: 30px 0;
+    position: relative;
+    text-align: center;
+}
+
+/* 画像の共通スタイル */
+.c-figure-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* 角丸 */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* うっすらとした枠線 */
+}
+
+/* 影付き（実績画像など強調したい場合） */
+.c-figure-media--shadow img {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 立体的な影 */
+    border: none;
+}
+
+/* バッジ（「No.1の弾力」など） */
+.c-video-badge {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background: var(--color-price); /* 赤色背景 */
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    /* ふわふわ動くアニメーション */
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* キャプション（注釈） */
+.c-figure-media__caption {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-light);
+    margin-top: 8px;
+}
+
+/* 浮遊アニメーション定義 */
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
