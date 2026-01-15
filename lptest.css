@@ -1,477 +1,357 @@
 @charset "UTF-8";
 
 /* ==========================================================================
-   Variables & Reset
+   1. Variables & Reset
    ========================================================================== */
 :root {
-    --navy: #002B5B;
-    --gold: #A68942;
-    --text: #333333;
-    --light-bg: #F4F7F9;
-    --white: #FFFFFF;
-    --accent: #D62828;
-    --trial-box: #E3F2FD;
-    --cta-gradient-start: #ff5e3a;
-    --cta-gradient-end: #ff2a68;
+    /* Colors */
+    --color-navy: #002B5B;
+    --color-gold: #A68942;
+    --color-text-main: #333333;
+    --color-text-sub: #777777;
+    --color-bg-body: #f0f2f5;
+    --color-bg-white: #FFFFFF;
+    --color-bg-light: #F4F7F9;
+    --color-bg-highlight: #fff9e6;
+    --color-accent: #D62828;
+    --color-trial-bg: #E3F2FD;
+    
+    /* Gradients */
+    --grad-cta: linear-gradient(135deg, #ff5e3a, #ff2a68);
+    --grad-marker: linear-gradient(transparent 60%, #fff176 60%);
+
+    /* Spacing & Sizing */
+    --container-width: 640px;
+    --container-padding: 20px;
+    --radius-md: 8px;
+    --radius-lg: 50px;
+    
+    /* Typography (Fluid sizing) */
+    --font-base: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+    --text-sm: clamp(10px, 3vw, 12px);
+    --text-md: clamp(15px, 4vw, 16px);
+    --text-lg: clamp(20px, 5vw, 22px);
+    --leading-relaxed: 1.9;
 }
 
+/* Minimal Modern Reset */
+*, *::before, *::after { box-sizing: border-box; }
 body {
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    line-height: 1.9;
-    color: var(--text);
-    background: #f0f2f5;
     margin: 0;
-    padding: 0;
+    font-family: var(--font-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-body);
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px; /* Space for fixed CTA */
+}
+img, video { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p, figure { margin: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* ==========================================================================
+   2. Layout
+   ========================================================================== */
+.l-lp-wrapper {
+    width: min(100%, var(--container-width));
+    margin-inline: auto;
+    background: var(--color-bg-white);
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+.p-section {
+    padding: 50px var(--container-padding);
+    border-bottom: 8px solid var(--color-bg-light);
 }
 
 /* ==========================================================================
-   Layout Containers
+   3. Typography
    ========================================================================== */
-.lp-wrapper {
-    max-width: 640px;
-    margin: 0 auto;
-    background: var(--white);
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
-.lp-section {
-    padding: 50px 20px;
-    border-bottom: 8px solid var(--light-bg);
-}
-
-/* ==========================================================================
-   Typography & Text Elements
-   ========================================================================== */
-.lp-heading {
-    font-size: 22px;
-    color: var(--navy);
-    border-left: 6px solid var(--gold);
+.c-heading-primary {
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+    border-left: 6px solid var(--color-gold);
     padding-left: 15px;
     margin-bottom: 30px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-.lp-text {
+.c-heading-secondary {
+    font-size: var(--text-lg);
+    color: var(--color-navy);
     margin-bottom: 25px;
-    font-size: 16px;
+    line-height: 1.5;
+    text-align: center; /* Center headings for section breaks */
+}
+.p-section .c-heading-secondary { text-align: left; } /* Align left if needed inside flow */
+
+.c-heading-tertiary {
+    font-size: 1.125rem;
+    margin: 30px 0 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.c-text-body p {
+    margin-bottom: 1.5em;
+    font-size: var(--text-md);
     text-align: justify;
 }
+.c-text-body p:last-child { margin-bottom: 0; }
 
-.marker {
-    background: linear-gradient(transparent 70%, #fff176 70%);
-    font-weight: bold;
+.u-marker {
+    background: var(--grad-marker);
+    font-weight: 700;
+    padding-inline: 0.2em;
 }
 
-/* ==========================================================================
-   Components
-   ========================================================================== */
-/* 吹き出し */
-.speech-bubble {
-    background: #EEF2F6;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 25px 0;
-    font-style: italic;
-}
+.u-text-right { text-align: right; }
+.u-mt-sm { margin-top: 10px; }
+.u-padding-sm { padding: 10px; }
 
-/* ポイントボックス */
-.point-box {
-    border: 2px solid var(--navy);
-    border-radius: 8px;
-    margin: 30px 0;
-    overflow: hidden;
+/* Note Styles */
+.c-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-sub);
+    line-height: 1.5;
 }
-
-.point-box--noborder {
-    border: none;
+.c-note-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    margin-inline: 2px;
+}
+.c-note-block {
     background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
 }
-
-.point-header {
-    background: var(--navy);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.point-body {
-    padding: 20px;
-    background: #fff;
-}
-/* ボーダーなし時の背景色調整 */
-.point-box--noborder .point-body {
-    background: transparent;
-}
-
-/* トライアル情報 */
-.trial-info {
-    background: var(--trial-box);
-    border: 2px dashed var(--navy);
-    padding: 20px;
-    margin: 30px 0;
-    text-align: center;
-}
-
-/* リスト */
-.lp-list {
-    padding-left: 20px;
-    margin: 0;
-}
+.c-note-block .c-note { margin-bottom: 0.5em; }
+.c-note-block .c-note:last-child { margin-bottom: 0; }
 
 /* ==========================================================================
-   Table (Comparison)
+   4. Components
    ========================================================================== */
-.comp-table {
-    width: 100%;
-    border-collapse: collapse;
+
+/* Full Width Figure (Breaking out of container padding) */
+.c-figure-full {
+    margin-block: 30px;
+    /* Smart calc to break padding */
+    margin-inline: calc(var(--container-padding) * -1);
+    width: calc(100% + var(--container-padding) * 2);
+    max-width: none;
+}
+.c-figure-full.u-no-margin-top { margin-top: 0; }
+
+/* Speech Bubble */
+.c-speech-bubble {
+    background: #EEF2F6;
+    padding: 25px;
+    border-radius: var(--radius-md);
     margin: 30px 0;
-    font-size: 13px;
-}
-
-.comp-table th, 
-.comp-table td {
-    border: 1px solid #ddd;
-    padding: 12px 5px;
-    text-align: center;
-}
-
-.shiroru-col {
-    background: #fff9e6;
-    border: 2px solid var(--gold) !important;
+    font-style: italic;
+    font-weight: 500;
     position: relative;
-    overflow: hidden;
-    font-weight: bold;
 }
-
-.shiroru-col::after {
+/* Optional: Triangle for bubble */
+.c-speech-bubble::after {
     content: "";
     position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 50%;
-    height: 300%;
-    background: rgba(255,255,255,0.4);
-    transform: rotate(45deg);
-    animation: shine 4s infinite;
+    bottom: -10px;
+    left: 30px;
+    border: 10px solid transparent;
+    border-top-color: #EEF2F6;
 }
 
+/* Step Box */
+.c-step-box {
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-md);
+    margin: 35px 0;
+    overflow: hidden;
+}
+.c-step-box--simple {
+    border: none;
+    background: var(--color-bg-light);
+}
+
+.c-step-box__header {
+    background: var(--color-navy);
+    color: var(--color-bg-white);
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.c-step-box__body {
+    padding: 20px;
+    background: var(--color-bg-white);
+}
+.c-step-box--simple .c-step-box__body { background: transparent; }
+
+/* Comparison Table */
+.c-table-wrapper {
+    overflow-x: auto;
+    margin: 30px 0;
+    -webkit-overflow-scrolling: touch;
+}
+.c-comp-table {
+    width: 100%;
+    min-width: 300px;
+    font-size: 13px;
+}
+.c-comp-table caption {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+.c-comp-table th, 
+.c-comp-table td {
+    border: 1px solid #ddd;
+    padding: 12px 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+.c-comp-table th { background: #f8f8f8; font-weight: 700; }
+.c-comp-table .is-highlight {
+    background: var(--color-bg-highlight);
+    border: 2px solid var(--color-gold);
+    color: #d32f2f;
+    font-weight: 700;
+    position: relative;
+}
+/* Shine animation optimization */
+.c-comp-table .is-highlight::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: shine 4s infinite;
+    pointer-events: none;
+}
 @keyframes shine {
     0% { left: -100%; }
-    20% { left: 150%; }
-    100% { left: 150%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
 }
 
-/* ==========================================================================
-   Images & Placeholders
-   ========================================================================== */
-.photo-inst {
-    /* --- 枠線と背景をリセット --- */
-    background: transparent; /* 背景色を透明に */
-    border: none;            /* 枠線を消す */
-    padding: 0;              /* 内側の余白をなくす */
-    border-radius: 0;        /* 角丸をなくす */
-    
-    /* --- 画面幅いっぱい（フルワイド）にする設定 --- */
-    /* 親要素(.lp-section)の左右padding(20px)を打ち消すためにマイナスを指定 */
-    margin-left: -20px;
-    margin-right: -20px;
-    
-    /* 幅を「親要素の幅(100%) + 左右の打ち消し分(40px)」に広げる */
-    width: calc(100% + 40px);
-    max-width: none;         /* 最大幅の制限を解除 */
-    
-    /* 上下の余白（お好みで調整してください） */
-    margin-top: 30px;
-    margin-bottom: 30px;
-    
-    /* 中の画像を隙間なく表示 */
-    line-height: 0;
-}
-
-/*.photo-inst img {
-    /* 描画のちらつきを抑える設定 */
-    /*-webkit-backface-visibility: hidden;
-    /*backface-visibility: hidden;
-    /*transform: translateZ(0);
-    
-    /* もし上記で直らない場合は、下の1行のコメントアウト(//)を外して試してください */
-    /*　image-rendering: pixelated; */
-/*}
-
-/* 余白を持たせて通常通り表示するためのクラス */
-.photo-inst.is-padded {
-    /* ネガティブマージン（-20px）をリセットして0に戻す */
-    margin-left: 0;
-    margin-right: 0;
-    
-    /* 幅の計算を元に戻す */
-    width: 100%;
-    
-    /* 必要であれば枠線や背景を復活させる（不要なら削除してください） */
-    /* background: #f8f9fa; */
-    /* border: 1px solid #ddd; */
-    /* padding: 10px; */
-    /* border-radius: 5px; */
-}
-
-/* ==========================================================================
-   CTA Buttons
-   ========================================================================== */
-.cta-box {
-    margin: 30px auto;
-}
-
-.cta-btn {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    background: linear-gradient(to bottom, var(--cta-gradient-start), var(--cta-gradient-end));
-    color: #fff !important;
+/* Alert/Trial Box */
+.c-alert-box {
+    background: var(--color-trial-bg);
+    border: 2px dashed var(--color-navy);
+    padding: 25px;
     text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 50px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    animation: float 3s infinite;
+    margin: 30px 0;
+    border-radius: var(--radius-md);
 }
 
-.cta-sub {
-    font-size: 13px;
-    font-weight: normal;
-    display: block;
-    margin-top: 5px;
+/* List Check */
+.c-list-check {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
 }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* 固定フッターCTA */
-.fixed-cta {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 640px;
-    background: rgba(255,255,255,0.9);
-    padding: 10px 0;
-    z-index: 1000;
-    text-align: center;
-    /* lp-wrapperの外に出ても中央寄せするように調整 */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.fixed-cta a {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-    background: var(--cta-gradient-end);
-    color: #fff;
-    padding: 15px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-.sb-legal-footer {
-    background: #f4f4f4;
-    padding: 40px 20px 100px;
-    font-size: 10px;
-    color: #777;
-    line-height: 1.6;
-}
-
-video {
-    max-width: 100%;
-    height: auto;
-    display: block; /* 画像と同じ挙動にする */
-}
-
-/* ==========================================================================
-   Note Styles (注釈用スタイル)
-   ========================================================================== */
-.note-text {
-    font-size: 11px;
-    color: #888;
-    line-height: 1.4;
-    margin-top: 5px;
-    margin-bottom: 0;
+.c-list-check li {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 0.8em;
     text-align: left;
 }
-
-.note-text--center {
-    text-align: center;
+.c-list-check li::before {
+    content: "✔";
+    color: var(--color-navy);
+    position: absolute;
+    left: 0;
+    font-weight: 700;
 }
 
-/* 複数の注釈をまとめて囲むボックス */
-.note-block {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 10px;
-}
+/* Buttons */
+.c-cta-area { margin: 40px 0; text-align: center; }
 
-.note-ref {
-    font-size: 0.75em;      /* 本文の75%のサイズに縮小 */
-    vertical-align: 0.3em;  /* 少し上に持ち上げる（上付き文字） */
-    margin: 0 1px;          /* 前後の文字との間隔を微調整 */
-}
-
-/* ==========================================================================
-   Footer Links (フッターリンク)
-   ========================================================================== */
-
-/* フッター全体を中央寄せにする（もし効いていなければ追加） */
-.sb-legal-footer {
-    text-align: center;
-}
-
-/* リンクりストのレイアウト */
-.footer-link-list {
-    display: flex;
-    justify-content: center; /* 中央揃え */
-    flex-wrap: wrap;         /* スマホで幅が足りないときに折り返す */
-    gap: 15px 20px;          /* 縦横の間隔 */
-    list-style: none;        /* ・を消す */
-    padding: 0;
-    margin: 0 0 30px 0;      /* 下（コピーライト）との余白 */
-}
-
-/* 各リンクのデザイン */
-.footer-link-list li a {
+.c-btn-cta {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--grad-cta);
+    color: var(--color-bg-white);
     text-decoration: none;
-    color: #666;             /* 文字色（フッターのテキスト色に合わせる） */
-    font-size: 11px;         /* 文字サイズ */
-    transition: opacity 0.3s;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(255, 94, 58, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.c-btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(255, 94, 58, 0.5);
 }
 
-.footer-link-list li a:hover {
-    opacity: 0.7;            /* ホバー時に少し薄くする */
-    text-decoration: underline;
+.c-btn-cta__main {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.c-btn-cta__sub {
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+/* Fixed CTA */
+.l-fixed-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(5px);
+    padding: 15px 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+.c-btn-fixed {
+    display: block;
+    width: 100%;
+    max-width: var(--container-width);
+    background: var(--color-accent);
+    color: var(--color-bg-white);
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
 }
 
 /* ==========================================================================
-   Mobile Responsive Styles (iPhone 17等 最新〜5年前の全機種対応)
+   5. Footer
    ========================================================================== */
-@media screen and (max-width: 768px) {
-    /* 最新：iPhone 17 / 17 Pro / 17 Pro Max
-       過去：iPhone 12 / SE / Android標準機
-       これら全ての画面幅をこの設定でカバーします 
-    */
-
-    /* 本体幅の調整：横揺れ防止 */
-    .lp-wrapper {
-        width: 100%;
-        box-shadow: none; /* スマホでは影を消してフラットに */
-    }
-
-    /* セクション余白：画面を広く使うために縮小 */
-    .lp-section {
-        padding: 40px 5%; /* 左右余白を5%に */
-        border-bottom-width: 5px;
-    }
-
-    /* 見出し：改行しても読みやすいサイズに調整 */
-    .lp-heading {
-        font-size: 20px; /* PCの22pxから縮小 */
-        line-height: 1.5;
-        margin-bottom: 25px;
-        padding-left: 10px;
-        border-left-width: 4px;
-    }
-
-    /* 本文：スマホで読みやすい15px〜16pxに統一 */
-    .lp-text {
-        font-size: 15px; 
-        line-height: 1.75;
-        text-align: left; /* 両端揃えをやめて自然な改行に */
-        margin-bottom: 20px;
-        padding: 0 2px;
-    }
-
-    /* 吹き出し調整 */
-    .speech-bubble {
-        font-size: 14px;
-        padding: 15px;
-        margin: 20px 0;
-        border-radius: 8px;
-    }
-
-    /* 画像と動画：画面からはみ出さないよう強制リサイズ */
-    .photo-inst, 
-    .photo-inst img, 
-    video {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    /* 画像エリアの余白調整 */
-    .photo-inst {
-        width: calc(100% + 10%) !important; /* 親要素のpaddingを埋める */
-        margin-left: -5% !important;
-        margin-right: -5% !important;
-        border-radius: 0;
-    }
-
-    /* 比較表：崩れ防止 */
-    .comp-table {
-        font-size: 11px; /* 小さくして収める */
-        margin: 20px 0;
-        width: 100%;
-    }
-    .comp-table th, 
-    .comp-table td {
-        padding: 10px 2px;
-        white-space: nowrap; /* 勝手な改行を防ぐ */
-    }
-    .comp-table th:first-child {
-        white-space: normal; /* 項目名は改行OK */
-        width: 20%;
-    }
-
-    /* CTAボタン：押しやすさ重視 */
-    .cta-btn {
-        font-size: 18px;
-        padding: 18px 0;
-        width: 100%; /* 横幅いっぱい */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    .cta-sub {
-        font-size: 11px;
-    }
-
-    /* 固定フッターCTA */
-    .fixed-cta {
-        padding: 10px 15px;
-        width: 100%;
-        left: 0;
-        transform: none; /* 中央寄せ解除 */
-    }
-    .fixed-cta a {
-        font-size: 14px;
-        padding: 12px 0;
-        width: 95%;
-    }
-
-    /* フッター注釈 */
-    .sb-legal-footer {
-        padding: 30px 15px 100px; /* 下部は固定CTAの分あける */
-        font-size: 10px;
-    }
+.l-footer {
+    background: #f4f4f4;
+    padding: 40px 20px 60px; /* Extra bottom padding not needed due to body padding */
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-sub);
 }
+.l-footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.l-footer__links a {
+    color: var(--color-text-sub);
+    text-decoration: none;
+}
+.l-footer__links a:hover { text-decoration: underline; }
