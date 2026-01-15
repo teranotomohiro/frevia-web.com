@@ -172,53 +172,23 @@ img {
    Images & Placeholders
    ========================================================================== */
 .photo-inst {
-    /* --- 枠線と背景をリセット --- */
-    background: transparent; /* 背景色を透明に */
-    border: none;            /* 枠線を消す */
-    padding: 0;              /* 内側の余白をなくす */
-    border-radius: 0;        /* 角丸をなくす */
-    
-    /* --- 画面幅いっぱい（フルワイド）にする設定 --- */
-    /* 親要素(.lp-section)の左右padding(20px)を打ち消すためにマイナスを指定 */
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
     margin-left: -20px;
     margin-right: -20px;
-    
-    /* 幅を「親要素の幅(100%) + 左右の打ち消し分(40px)」に広げる */
     width: calc(100% + 40px);
-    max-width: none;         /* 最大幅の制限を解除 */
-    
-    /* 上下の余白（お好みで調整してください） */
+    max-width: none;
     margin-top: 30px;
     margin-bottom: 30px;
-    
-    /* 中の画像を隙間なく表示 */
     line-height: 0;
 }
 
-/*.photo-inst img {
-    /* 描画のちらつきを抑える設定 */
-    /*-webkit-backface-visibility: hidden;
-    /*backface-visibility: hidden;
-    /*transform: translateZ(0);
-    
-    /* もし上記で直らない場合は、下の1行のコメントアウト(//)を外して試してください */
-    /*　image-rendering: pixelated; */
-/*}
-
-/* 余白を持たせて通常通り表示するためのクラス */
 .photo-inst.is-padded {
-    /* ネガティブマージン（-20px）をリセットして0に戻す */
     margin-left: 0;
     margin-right: 0;
-    
-    /* 幅の計算を元に戻す */
     width: 100%;
-    
-    /* 必要であれば枠線や背景を復活させる（不要なら削除してください） */
-    /* background: #f8f9fa; */
-    /* border: 1px solid #ddd; */
-    /* padding: 10px; */
-    /* border-radius: 5px; */
 }
 
 /* ==========================================================================
@@ -256,7 +226,6 @@ img {
     50% { transform: translateY(-10px); }
 }
 
-/* 固定フッターCTA */
 .fixed-cta {
     position: fixed;
     bottom: 0;
@@ -266,7 +235,6 @@ img {
     padding: 10px 0;
     z-index: 1000;
     text-align: center;
-    /* lp-wrapperの外に出ても中央寄せするように調整 */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -292,22 +260,26 @@ img {
     font-size: 10px;
     color: #777;
     line-height: 1.6;
+    text-align: center;
 }
 
 video {
     max-width: 100%;
     height: auto;
-    display: block; /* 画像と同じ挙動にする */
+    display: block;
 }
 
 /* ==========================================================================
    Note Styles (注釈用スタイル)
    ========================================================================== */
+/* 修正：フォントサイズを12pxに引き上げ、
+   消費者が認識しやすい視認性を確保（適正広告基準への対応）
+*/
 .note-text {
-    font-size: 11px;
-    color: #888;
-    line-height: 1.4;
-    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 8px;
     margin-bottom: 0;
     text-align: left;
 }
@@ -316,162 +288,101 @@ video {
     text-align: center;
 }
 
-/* 複数の注釈をまとめて囲むボックス */
 .note-block {
     background: #f9f9f9;
-    padding: 10px;
+    padding: 12px;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .note-ref {
-    font-size: 0.75em;      /* 本文の75%のサイズに縮小 */
-    vertical-align: 0.3em;  /* 少し上に持ち上げる（上付き文字） */
-    margin: 0 1px;          /* 前後の文字との間隔を微調整 */
+    font-size: 0.75em;
+    vertical-align: 0.3em;
+    margin: 0 1px;
 }
 
 /* ==========================================================================
    Footer Links (フッターリンク)
    ========================================================================== */
-
-/* フッター全体を中央寄せにする（もし効いていなければ追加） */
-.sb-legal-footer {
-    text-align: center;
-}
-
-/* リンクりストのレイアウト */
 .footer-link-list {
     display: flex;
-    justify-content: center; /* 中央揃え */
-    flex-wrap: wrap;         /* スマホで幅が足りないときに折り返す */
-    gap: 15px 20px;          /* 縦横の間隔 */
-    list-style: none;        /* ・を消す */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 20px;
+    list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;      /* 下（コピーライト）との余白 */
+    margin: 0 0 30px 0;
 }
 
-/* 各リンクのデザイン */
 .footer-link-list li a {
     text-decoration: none;
-    color: #666;             /* 文字色（フッターのテキスト色に合わせる） */
-    font-size: 11px;         /* 文字サイズ */
+    color: #666;
+    font-size: 11px;
     transition: opacity 0.3s;
 }
 
 .footer-link-list li a:hover {
-    opacity: 0.7;            /* ホバー時に少し薄くする */
+    opacity: 0.7;
     text-decoration: underline;
 }
 
 /* ==========================================================================
-   Mobile Responsive Styles (iPhone 17等 最新〜5年前の全機種対応)
+   Mobile Responsive Styles
    ========================================================================== */
 @media screen and (max-width: 768px) {
-    /* 最新：iPhone 17 / 17 Pro / 17 Pro Max
-       過去：iPhone 12 / SE / Android標準機
-       これら全ての画面幅をこの設定でカバーします 
-    */
-
-    /* 本体幅の調整：横揺れ防止 */
     .lp-wrapper {
         width: 100%;
-        box-shadow: none; /* スマホでは影を消してフラットに */
+        box-shadow: none;
     }
-
-    /* セクション余白：画面を広く使うために縮小 */
     .lp-section {
-        padding: 40px 5%; /* 左右余白を5%に */
+        padding: 40px 5%;
         border-bottom-width: 5px;
     }
-
-    /* 見出し：改行しても読みやすいサイズに調整 */
     .lp-heading {
-        font-size: 20px; /* PCの22pxから縮小 */
+        font-size: 20px;
         line-height: 1.5;
         margin-bottom: 25px;
         padding-left: 10px;
         border-left-width: 4px;
     }
-
-    /* 本文：スマホで読みやすい15px〜16pxに統一 */
     .lp-text {
         font-size: 15px; 
         line-height: 1.75;
-        text-align: left; /* 両端揃えをやめて自然な改行に */
+        text-align: left;
         margin-bottom: 20px;
         padding: 0 2px;
     }
-
-    /* 吹き出し調整 */
     .speech-bubble {
         font-size: 14px;
         padding: 15px;
         margin: 20px 0;
         border-radius: 8px;
     }
-
-    /* 画像と動画：画面からはみ出さないよう強制リサイズ */
-    .photo-inst, 
-    .photo-inst img, 
-    video {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    /* 画像エリアの余白調整 */
     .photo-inst {
-        width: calc(100% + 10%) !important; /* 親要素のpaddingを埋める */
+        width: calc(100% + 10%) !important;
         margin-left: -5% !important;
         margin-right: -5% !important;
         border-radius: 0;
     }
-
-    /* 比較表：崩れ防止 */
     .comp-table {
-        font-size: 11px; /* 小さくして収める */
+        font-size: 11px;
         margin: 20px 0;
         width: 100%;
     }
     .comp-table th, 
     .comp-table td {
         padding: 10px 2px;
-        white-space: nowrap; /* 勝手な改行を防ぐ */
+        white-space: nowrap;
     }
-    .comp-table th:first-child {
-        white-space: normal; /* 項目名は改行OK */
-        width: 20%;
-    }
-
-    /* CTAボタン：押しやすさ重視 */
     .cta-btn {
         font-size: 18px;
         padding: 18px 0;
-        width: 100%; /* 横幅いっぱい */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        width: 100%;
     }
-    .cta-sub {
-        font-size: 11px;
-    }
-
-    /* 固定フッターCTA */
     .fixed-cta {
         padding: 10px 15px;
         width: 100%;
         left: 0;
-        transform: none; /* 中央寄せ解除 */
-    }
-    .fixed-cta a {
-        font-size: 14px;
-        padding: 12px 0;
-        width: 95%;
-    }
-
-    /* フッター注釈 */
-    .sb-legal-footer {
-        padding: 30px 15px 100px; /* 下部は固定CTAの分あける */
-        font-size: 10px;
+        transform: none;
     }
 }
