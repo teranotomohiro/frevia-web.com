@@ -15,14 +15,17 @@
     --color-bg-gray: #F9F9F9;
     --color-price: #E63946;
     --color-highlight: #FFF176;
+    
+    /* New: 緊急色・強調色を一元管理 */
+    --color-urgent: #FF4D6D; 
 
     /* Gradients */
-    --grad-btn-primary: linear-gradient(135deg, #FF85A1, #FF4D6D);
+    --grad-btn-primary: linear-gradient(135deg, #FF85A1, var(--color-urgent));
     --grad-btn-urgent: linear-gradient(135deg, #FF6B6B, #E63946);
 
     /* Spacing & Layout */
     --width-max: 640px;
-    --space-section: 60px; /* PC/タブレット基準のセクション余白 */
+    --space-section: 60px;
     --space-inner: 20px;
 
     /* Typography */
@@ -58,21 +61,21 @@ body {
     padding-bottom: 80px; /* Space for fixed bar */
 }
 
-/* Fixed CTA Bar - PC表示最適化 */
+/* Fixed CTA Bar */
 .l-fixed-bar {
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: var(--width-max); /* コンテンツ幅に合わせる */
+    max-width: var(--width-max);
     z-index: 1000;
     pointer-events: none;
 }
 
 .l-fixed-bar__inner {
     background: rgba(255, 255, 255, 0.95);
-    -webkit-backdrop-filter: blur(4px); /* Safari対応 */
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
     padding: 15px 0;
@@ -163,6 +166,12 @@ body {
     vertical-align: super;
 }
 
+/* 強調文字（赤文字） */
+.u-text-accent {
+    color: var(--color-urgent); /* 変数管理に変更 */
+    font-weight: 700;
+}
+
 /* ==========================================================================
    Components
    ========================================================================== */
@@ -217,7 +226,7 @@ body {
 }
 
 .c-cta-box--accent {
-    border-color: #FF4D6D;
+    border-color: var(--color-urgent);
 }
 
 .c-cta-box__label {
@@ -268,6 +277,7 @@ body {
     border-radius: 50px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     animation: float 3s ease-in-out infinite;
+    will-change: transform; /* Performance: レイヤー昇格 */
 }
 
 .c-btn:hover {
@@ -290,7 +300,7 @@ body {
 }
 
 .c-btn--small {
-    background: #FF4D6D;
+    background: var(--color-urgent);
     width: 90%;
     max-width: 600px;
     padding: 15px;
@@ -398,32 +408,26 @@ body {
 /* ==========================================================================
    Mobile Responsive (スマホ最適化)
    ========================================================================== */
-/* ブレイクポイントをHTMLの.u-sp-only (600px) と統一 */
 @media screen and (max-width: 600px) {
     :root {
-        /* スマホではセクション上下の余白を少し詰める */
         --space-section: 40px; 
     }
 
-    /* 全体の文字サイズ調整 */
     body {
         font-size: 15px;
         line-height: 1.75;
     }
 
-    /* メインタイトル：改行が多くなりすぎないよう少し小さく */
     .p-title-main {
         font-size: 22px;
         margin: 25px 0;
     }
 
-    /* サブ見出し */
     .c-heading-sub {
         font-size: 20px;
         margin-bottom: 20px;
     }
 
-    /* チャット吹き出し：アイコンと文字サイズを調整 */
     .c-chat {
         margin: 20px 0;
     }
@@ -437,16 +441,15 @@ body {
         margin-left: 10px;
     }
     .c-chat__bubble::after {
-        left: -12px; /* 矢印の位置微調整 */
+        left: -12px; 
         top: 15px;
     }
 
-    /* CTAボタン・価格表記の最適化 */
     .c-cta-box {
         padding: 25px 15px;
     }
     .c-cta-box__amount {
-        font-size: 32px; /* 価格を目立たせつつ画面に収める */
+        font-size: 32px; 
     }
     .c-btn--primary, 
     .c-btn--urgent {
@@ -454,7 +457,6 @@ body {
         padding: 18px 0;
     }
     
-    /* フッターリンクの間隔調整 */
     .l-footer__nav {
         gap: 10px 15px;
     }
@@ -471,7 +473,7 @@ body {
 }
 
 .c-accordion__summary {
-    display: block; /* マーカーを消すための設定 */
+    display: block; 
     padding: 15px;
     cursor: pointer;
     font-size: 13px;
@@ -479,10 +481,9 @@ body {
     text-align: center;
     background-color: #f9f9f9;
     transition: background-color 0.2s;
-    list-style: none; /* デフォルトの三角アイコンを消す（主要ブラウザ用） */
+    list-style: none;
 }
 
-/* Safari等でマーカーが消えない場合の対策 */
 .c-accordion__summary::-webkit-details-marker {
     display: none;
 }
@@ -492,15 +493,9 @@ body {
 }
 
 .c-accordion__content {
-    /* 既存の .c-section-note のスタイルを継承しつつ、マージン等を調整 */
     padding: 15px;
     border-top: 1px solid #eee;
-    margin-top: 0; /* c-section-noteのmarginをリセット */
-    background: #fff; /* 背景色を白に */
+    margin-top: 0;
+    background: #fff;
     border-radius: 0 0 4px 4px;
-}
-
-/* 強調文字（赤文字） */
-.u-text-accent {
-    color: #FF4D6D; /* 既存の赤色変数を流用 */
 }
