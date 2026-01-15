@@ -165,14 +165,14 @@ body {
 
 /* Tag */
 .c-label-tag {
-    display: inline-block;
-    background: var(--color-accent);
-    color: var(--color-white);
-    padding: 2px 12px;
-    font-size: 12px;
+    display: table;
+    margin: 0 auto 16px auto;
+    background-color: #e0f2f1;
+    color: #00695c;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 14px;
     font-weight: 700;
-    border-radius: 2px;
-    margin-bottom: 10px;
 }
 
 /* Note Section */
