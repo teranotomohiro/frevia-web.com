@@ -470,6 +470,7 @@ body {
     cursor: pointer;
     font-size: 13px;
     font-weight: 700;
+    text-align: center;
     background-color: #f9f9f9;
     transition: background-color 0.2s;
     list-style: none; /* デフォルトの三角アイコンを消す（主要ブラウザ用） */
@@ -495,5 +496,5 @@ body {
 
 /* 強調文字（赤文字） */
 .u-text-accent {
-    color: var(--color-price); /* 既存の赤色変数を流用 */
+    color: #FF4D6D; /* 既存の赤色変数を流用 */
 }
