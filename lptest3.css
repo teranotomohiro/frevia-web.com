@@ -310,8 +310,10 @@ body {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background: #eee;
+    background: #eee; /* 画像読み込み前の背景色として残してもOKです */
     flex-shrink: 0;
+    /* ★以下を追加（画像を枠いっぱいにトリミングして表示） */
+    object-fit: cover;
 }
 
 .c-chat__bubble {
