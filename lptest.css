@@ -323,3 +323,36 @@ video {
     border-radius: 4px;
     margin-top: 10px;
 }
+
+/* ==========================================================================
+   Footer Links (フッターリンク)
+   ========================================================================== */
+
+/* フッター全体を中央寄せにする（もし効いていなければ追加） */
+.sb-legal-footer {
+    text-align: center;
+}
+
+/* リンクりストのレイアウト */
+.footer-link-list {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    flex-wrap: wrap;         /* スマホで幅が足りないときに折り返す */
+    gap: 15px 20px;          /* 縦横の間隔 */
+    list-style: none;        /* ・を消す */
+    padding: 0;
+    margin: 0 0 30px 0;      /* 下（コピーライト）との余白 */
+}
+
+/* 各リンクのデザイン */
+.footer-link-list li a {
+    text-decoration: none;
+    color: #666;             /* 文字色（フッターのテキスト色に合わせる） */
+    font-size: 11px;         /* 文字サイズ */
+    transition: opacity 0.3s;
+}
+
+.footer-link-list li a:hover {
+    opacity: 0.7;            /* ホバー時に少し薄くする */
+    text-decoration: underline;
+}
