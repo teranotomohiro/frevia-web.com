@@ -22,7 +22,7 @@
 
     /* Spacing & Layout */
     --width-max: 640px;
-    --space-section: 60px;
+    --space-section: 60px; /* PC/タブレット基準のセクション余白 */
     --space-inner: 20px;
 
     /* Typography */
@@ -58,37 +58,58 @@ body {
     padding-bottom: 80px; /* Space for fixed bar */
 }
 
+/* Fixed CTA Bar */
 .l-fixed-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    pointer-events: none;
+}
+
+.l-fixed-bar__inner {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(4px);
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
-    padding: 10px 0;
+    padding: 15px 0;
+    padding-bottom: max(15px, env(safe-area-inset-bottom));
     display: flex;
     justify-content: center;
+    pointer-events: auto;
 }
 
+/* Footer */
 .l-footer {
     background: #f4f4f4;
-    padding: 60px 25px 140px;
-    font-size: 13px;
-    color: #666;
-    line-height: 1.8;
+    padding: 40px 20px 120px;
+    font-size: 11px;
+    color: #999;
+    text-align: center;
 }
 
-.l-footer__notes {
-    padding-left: 1.5em;
-    margin-top: 20px;
-}
-
-.l-footer__notes li {
-    text-indent: -1.5em;
+.l-footer__nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 25px;
     list-style: none;
-    margin-bottom: 0.5em;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.l-footer__nav a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.l-footer__nav a:hover {
+    text-decoration: underline;
+}
+
+.l-footer__copyright {
+    margin: 0;
 }
 
 /* ==========================================================================
@@ -154,26 +175,31 @@ body {
     margin-bottom: 10px;
 }
 
-/* Figures (Image Placeholders) */
-.c-figure-placeholder {
-    margin: 30px 0;
+/* Note Section */
+.c-section-note {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+    margin-top: 15px;
+    padding: 10px;
+    background: #fafafa;
+    border-radius: 4px;
 }
 
-.c-figure-placeholder__inner {
-    background: #F4F7F9;
-    border: 1px dashed #999;
-    color: #555;
-    padding: 35px 20px;
-    font-size: 14px;
-    text-align: center;
-    border-radius: 5px;
+.c-section-note--border-top {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    background: transparent;
+    padding: 20px 0 0;
 }
 
-.c-figure-placeholder__inner strong {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--color-navy);
-    font-size: 16px;
+.c-section-note p {
+    margin: 0 0 5px;
+    text-indent: -1em;
+    padding-left: 1em;
+}
+.c-section-note p:last-child {
+    margin-bottom: 0;
 }
 
 /* CTA Box */
@@ -237,6 +263,7 @@ body {
     text-align: center;
     border-radius: 50px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: float 3s ease-in-out infinite;
 }
 
 .c-btn:hover {
@@ -264,6 +291,12 @@ body {
     max-width: 600px;
     padding: 15px;
     font-size: 16px;
+    margin: 0 auto;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
 }
 
 /* Chat UI */
@@ -321,65 +354,102 @@ body {
     margin-bottom: 0;
 }
 
-/* ==========================================================================
-   #Media Components (画像・動画装飾) - 横幅いっぱい版
-   ========================================================================== */
-
-/* 画像コンテナ：親要素のpadding(20px)を打ち消して横幅いっぱいに広げる */
+/* Media Components */
 .c-figure-media {
-    margin: 30px -20px; /* 上下30px, 左右-20px */
+    margin: 30px -20px;
     position: relative;
     text-align: center;
 }
 
-/* 画像・動画の共通スタイル */
 .c-figure-media img,
 .c-figure-media video {
     display: block;
-    width: 100%;       /* コンテナ幅いっぱい */
+    width: 100%;
     height: auto;
-    border-radius: 0;  /* 端まで表示するため角丸をなくす */
-    border: none;      /* 枠線もなくして没入感を高める */
+    border-radius: 0;
+    border: none;
 }
 
-/* 動画エリアの装飾（横幅いっぱい用） */
 .c-figure-media--video {
     background: #fff;
-    padding: 0;        /* 内部の余白もゼロに */
-    border: none;      /* 枠線を削除 */
-    /* 上下の境界線だけ残してエリアを区切るデザインに変更 */
+    padding: 0;
+    border: none;
     border-top: 2px solid var(--color-accent);
     border-bottom: 2px solid var(--color-accent);
 }
 
-.c-figure-media--video video {
-    border-radius: 0; /* 動画自体の角丸も削除 */
-}
-
-/* 影付き（実績画像など）は少し内側に戻すか、影の出方を調整 */
 .c-figure-media--shadow img {
-    /* 影付き画像も横幅いっぱいにしたい場合はこのままでOK */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* バッジの位置調整（端まで広がったため少し内側に寄せる） */
-.c-video-badge {
-    top: 10px;    /* 枠外ではなく動画の上に重ねる */
-    right: 10px;  /* 端すぎないように余白確保 */
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-/* キャプション */
 .c-figure-media__caption {
     font-size: 12px;
     color: var(--color-text-light);
     margin-top: 8px;
-    padding: 0 20px; /* キャプションだけは読みやすいように余白を持たせる */
+    padding: 0 20px;
 }
 
-/* 浮遊アニメーション定義 */
-@keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+
+/* ==========================================================================
+   Mobile Responsive (スマホ最適化) - 追記部分
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+    :root {
+        /* スマホではセクション上下の余白を少し詰める */
+        --space-section: 40px; 
+    }
+
+    /* 全体の文字サイズ調整 */
+    body {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    /* メインタイトル：改行が多くなりすぎないよう少し小さく */
+    .p-title-main {
+        font-size: 22px;
+        margin: 25px 0;
+    }
+
+    /* サブ見出し */
+    .c-heading-sub {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* チャット吹き出し：アイコンと文字サイズを調整 */
+    .c-chat {
+        margin: 20px 0;
+    }
+    .c-chat__icon {
+        width: 50px;
+        height: 50px;
+    }
+    .c-chat__bubble {
+        font-size: 14px;
+        padding: 15px;
+        margin-left: 10px;
+    }
+    .c-chat__bubble::after {
+        left: -12px; /* 矢印の位置微調整 */
+        top: 15px;
+    }
+
+    /* CTAボタン・価格表記の最適化 */
+    .c-cta-box {
+        padding: 25px 15px;
+    }
+    .c-cta-box__amount {
+        font-size: 32px; /* 価格を目立たせつつ画面に収める */
+    }
+    .c-btn--primary, 
+    .c-btn--urgent {
+        font-size: 18px;
+        padding: 18px 0;
+    }
+    
+    /* フッターリンクの間隔調整 */
+    .l-footer__nav {
+        gap: 10px 15px;
+    }
 }
