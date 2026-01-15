@@ -358,66 +358,114 @@ video {
 }
 
 /* ==========================================================================
-   Mobile Responsive Styles (スマホ最適化)
+   Mobile Responsive Styles (iPhone 17等 最新〜5年前の全機種対応)
    ========================================================================== */
+@media screen and (max-width: 768px) {
+    /* 最新：iPhone 17 / 17 Pro / 17 Pro Max
+       過去：iPhone 12 / SE / Android標準機
+       これら全ての画面幅をこの設定でカバーします 
+    */
 
-@media screen and (max-width: 480px) {
-    /* 本文：少しサイズを落とし、両端揃え(justify)を解除して読みやすく */
-    .lp-text {
-        font-size: 15px; /* 16px -> 15px */
-        line-height: 1.7;
-        text-align: left;
-        margin-bottom: 20px;
+    /* 本体幅の調整：横揺れ防止 */
+    .lp-wrapper {
+        width: 100%;
+        box-shadow: none; /* スマホでは影を消してフラットに */
     }
 
-    /* 見出し：画面からはみ出ないよう調整 */
+    /* セクション余白：画面を広く使うために縮小 */
+    .lp-section {
+        padding: 40px 5%; /* 左右余白を5%に */
+        border-bottom-width: 5px;
+    }
+
+    /* 見出し：改行しても読みやすいサイズに調整 */
     .lp-heading {
-        font-size: 19px; /* 22px -> 19px */
-        line-height: 1.4;
-        padding-left: 12px;
-        margin-bottom: 20px;
+        font-size: 20px; /* PCの22pxから縮小 */
+        line-height: 1.5;
+        margin-bottom: 25px;
+        padding-left: 10px;
+        border-left-width: 4px;
     }
 
-    /* 吹き出し：余白と文字サイズをスマホ用に */
+    /* 本文：スマホで読みやすい15px〜16pxに統一 */
+    .lp-text {
+        font-size: 15px; 
+        line-height: 1.75;
+        text-align: left; /* 両端揃えをやめて自然な改行に */
+        margin-bottom: 20px;
+        padding: 0 2px;
+    }
+
+    /* 吹き出し調整 */
     .speech-bubble {
         font-size: 14px;
         padding: 15px;
         margin: 20px 0;
+        border-radius: 8px;
     }
 
-    /* ポイントボックスの見出し */
-    .point-header {
-        font-size: 14px;
-        padding: 10px 5px;
+    /* 画像と動画：画面からはみ出さないよう強制リサイズ */
+    .photo-inst, 
+    .photo-inst img, 
+    video {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    /* 画像エリアの余白調整 */
+    .photo-inst {
+        width: calc(100% + 10%) !important; /* 親要素のpaddingを埋める */
+        margin-left: -5% !important;
+        margin-right: -5% !important;
+        border-radius: 0;
     }
 
-    /* 比較表：スマホだと窮屈になるため文字と余白を縮小 */
+    /* 比較表：崩れ防止 */
     .comp-table {
-        font-size: 11px; /* 13px -> 11px */
+        font-size: 11px; /* 小さくして収める */
+        margin: 20px 0;
+        width: 100%;
     }
     .comp-table th, 
     .comp-table td {
-        padding: 8px 2px;
+        padding: 10px 2px;
+        white-space: nowrap; /* 勝手な改行を防ぐ */
+    }
+    .comp-table th:first-child {
+        white-space: normal; /* 項目名は改行OK */
+        width: 20%;
     }
 
-    /* CTAボタン：押しやすさを維持しつつ文字バランス調整 */
+    /* CTAボタン：押しやすさ重視 */
     .cta-btn {
-        font-size: 18px; /* 20px -> 18px */
-        padding: 18px 10px;
+        font-size: 18px;
+        padding: 18px 0;
         width: 100%; /* 横幅いっぱい */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
     .cta-sub {
         font-size: 11px;
     }
 
     /* 固定フッターCTA */
+    .fixed-cta {
+        padding: 10px 15px;
+        width: 100%;
+        left: 0;
+        transform: none; /* 中央寄せ解除 */
+    }
     .fixed-cta a {
         font-size: 14px;
-        padding: 12px;
+        padding: 12px 0;
+        width: 95%;
     }
-    
-    /* セクション余白の微調整 */
-    .lp-section {
-        padding: 40px 15px; /* 左右の余白を少し詰める */
+
+    /* フッター注釈 */
+    .sb-legal-footer {
+        padding: 30px 15px 100px; /* 下部は固定CTAの分あける */
+        font-size: 10px;
     }
 }
