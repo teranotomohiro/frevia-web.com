@@ -453,3 +453,47 @@ body {
         gap: 10px 15px;
     }
 }
+
+/* ==========================================================================
+   Accordion (全額返金保証用 折りたたみ)
+   ========================================================================== */
+.c-accordion {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.c-accordion__summary {
+    display: block; /* マーカーを消すための設定 */
+    padding: 15px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s;
+    list-style: none; /* デフォルトの三角アイコンを消す（主要ブラウザ用） */
+}
+
+/* Safari等でマーカーが消えない場合の対策 */
+.c-accordion__summary::-webkit-details-marker {
+    display: none;
+}
+
+.c-accordion__summary:hover {
+    background-color: #f0f0f0;
+}
+
+.c-accordion__content {
+    /* 既存の .c-section-note のスタイルを継承しつつ、マージン等を調整 */
+    padding: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 0; /* c-section-noteのmarginをリセット */
+    background: #fff; /* 背景色を白に */
+    border-radius: 0 0 4px 4px;
+}
+
+/* 強調文字（赤文字） */
+.u-text-accent {
+    color: var(--color-price); /* 既存の赤色変数を流用 */
+}
