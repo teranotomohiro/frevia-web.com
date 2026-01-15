@@ -300,4 +300,26 @@ video {
     display: block; /* 画像と同じ挙動にする */
 }
 
+/* ==========================================================================
+   Note Styles (注釈用スタイル)
+   ========================================================================== */
+.note-text {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.4;
+    margin-top: 5px;
+    margin-bottom: 0;
+    text-align: left;
+}
 
+.note-text--center {
+    text-align: center;
+}
+
+/* 複数の注釈をまとめて囲むボックス */
+.note-block {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
