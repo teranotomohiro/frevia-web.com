@@ -6,28 +6,20 @@
 :root {
     --navy: #002B5B;
     --gold: #A68942;
-    --text: #333333;
+    --text: #333;
     --light-bg: #F4F7F9;
     --white: #FFFFFF;
     --accent: #D62828;
-    --trial-box: #E3F2FD;
-    --cta-gradient-start: #ff5e3a;
-    --cta-gradient-end: #ff2a68;
+    --cta-gradient: linear-gradient(to bottom, #ff5e3a, #ff2a68);
 }
 
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    line-height: 1.9;
+    line-height: 1.8;
     color: var(--text);
     background: #f0f2f5;
     margin: 0;
     padding: 0;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
 }
 
 /* ==========================================================================
@@ -38,6 +30,7 @@ img {
     margin: 0 auto;
     background: var(--white);
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
 }
 
 .lp-section {
@@ -46,7 +39,7 @@ img {
 }
 
 /* ==========================================================================
-   Typography & Text Elements
+   Typography & UI Elements
    ========================================================================== */
 .lp-heading {
     font-size: 22px;
@@ -68,29 +61,60 @@ img {
     font-weight: bold;
 }
 
-/* ==========================================================================
-   Components
-   ========================================================================== */
-/* 吹き出し */
 .speech-bubble {
     background: #EEF2F6;
     padding: 20px;
     border-radius: 10px;
     margin: 25px 0;
     font-style: italic;
+    font-size: 15px;
 }
 
-/* ポイントボックス */
+/* ==========================================================================
+   Annotation Style (注釈/打ち消し表示)
+   ========================================================================== */
+/* セクション末尾に配置する注釈ブロック */
+.note-block {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+/* 薬機法上の視認性を確保するため、フォントサイズは12px（最小10px）を下回らないように設定 */
+.note-text {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    margin: 4px 0;
+    text-align: left;
+}
+
+.note-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    color: var(--navy);
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+.photo-inst {
+    margin: 30px -20px;
+}
+.photo-inst img {
+    width: 100%;
+    display: block;
+}
+
 .point-box {
     border: 2px solid var(--navy);
     border-radius: 8px;
-    margin: 30px 0;
+    margin: 25px 0;
     overflow: hidden;
-}
-
-.point-box--noborder {
-    border: none;
-    background: #f9f9f9;
 }
 
 .point-header {
@@ -103,26 +127,16 @@ img {
 
 .point-body {
     padding: 20px;
-    background: #fff;
-}
-/* ボーダーなし時の背景色調整 */
-.point-box--noborder .point-body {
-    background: transparent;
+    font-size: 15px;
 }
 
-/* トライアル情報 */
 .trial-info {
-    background: var(--trial-box);
+    background: #E3F2FD;
     border: 2px dashed var(--navy);
     padding: 20px;
-    margin: 30px 0;
+    margin: 20px 0;
     text-align: center;
-}
-
-/* リスト */
-.lp-list {
-    padding-left: 20px;
-    margin: 0;
+    font-size: 18px;
 }
 
 /* ==========================================================================
@@ -135,8 +149,7 @@ img {
     font-size: 13px;
 }
 
-.comp-table th, 
-.comp-table td {
+.comp-table th, .comp-table td {
     border: 1px solid #ddd;
     padding: 12px 5px;
     text-align: center;
@@ -145,57 +158,14 @@ img {
 .shiroru-col {
     background: #fff9e6;
     border: 2px solid var(--gold) !important;
-    position: relative;
-    overflow: hidden;
     font-weight: bold;
-}
-
-.shiroru-col::after {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 50%;
-    height: 300%;
-    background: rgba(255,255,255,0.4);
-    transform: rotate(45deg);
-    animation: shine 4s infinite;
-}
-
-@keyframes shine {
-    0% { left: -100%; }
-    20% { left: 150%; }
-    100% { left: 150%; }
-}
-
-/* ==========================================================================
-   Images & Placeholders
-   ========================================================================== */
-.photo-inst {
-    background: transparent;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    margin-left: -20px;
-    margin-right: -20px;
-    width: calc(100% + 40px);
-    max-width: none;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    line-height: 0;
-}
-
-.photo-inst.is-padded {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
 }
 
 /* ==========================================================================
    CTA Buttons
    ========================================================================== */
 .cta-box {
-    margin: 30px auto;
+    padding: 30px 0;
 }
 
 .cta-btn {
@@ -203,7 +173,7 @@ img {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    background: linear-gradient(to bottom, var(--cta-gradient-start), var(--cta-gradient-end));
+    background: var(--cta-gradient);
     color: #fff !important;
     text-align: center;
     text-decoration: none;
@@ -211,19 +181,12 @@ img {
     font-weight: bold;
     border-radius: 50px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    animation: float 3s infinite;
 }
 
 .cta-sub {
     font-size: 13px;
     font-weight: normal;
     display: block;
-    margin-top: 5px;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
 }
 
 .fixed-cta {
@@ -231,24 +194,22 @@ img {
     bottom: 0;
     width: 100%;
     max-width: 640px;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     padding: 10px 0;
     z-index: 1000;
-    text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .fixed-cta a {
     display: block;
     width: 90%;
     margin: 0 auto;
-    background: var(--cta-gradient-end);
+    background: #ff2a68;
     color: #fff;
     padding: 15px;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
+    text-align: center;
 }
 
 /* ==========================================================================
@@ -257,132 +218,30 @@ img {
 .sb-legal-footer {
     background: #f4f4f4;
     padding: 40px 20px 100px;
-    font-size: 10px;
+    font-size: 11px;
     color: #777;
-    line-height: 1.6;
     text-align: center;
 }
 
-video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* ==========================================================================
-   Note Styles (注釈用スタイル)
-   ========================================================================== */
-/* 修正：フォントサイズを12pxに引き上げ、
-   消費者が認識しやすい視認性を確保（適正広告基準への対応）
-*/
-.note-text {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
-    margin-top: 8px;
-    margin-bottom: 0;
-    text-align: left;
-}
-
-.note-text--center {
-    text-align: center;
-}
-
-.note-block {
-    background: #f9f9f9;
-    padding: 12px;
-    border-radius: 4px;
-    margin-top: 15px;
-}
-
-.note-ref {
-    font-size: 0.75em;
-    vertical-align: 0.3em;
-    margin: 0 1px;
-}
-
-/* ==========================================================================
-   Footer Links (フッターリンク)
-   ========================================================================== */
 .footer-link-list {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px 20px;
+    gap: 15px;
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;
+    margin-bottom: 20px;
 }
 
-.footer-link-list li a {
+.footer-link-list a {
+    color: #777;
     text-decoration: none;
-    color: #666;
-    font-size: 11px;
-    transition: opacity 0.3s;
-}
-
-.footer-link-list li a:hover {
-    opacity: 0.7;
-    text-decoration: underline;
 }
 
 /* ==========================================================================
-   Mobile Responsive Styles
+   Mobile Adjustments
    ========================================================================== */
-@media screen and (max-width: 768px) {
-    .lp-wrapper {
-        width: 100%;
-        box-shadow: none;
-    }
-    .lp-section {
-        padding: 40px 5%;
-        border-bottom-width: 5px;
-    }
-    .lp-heading {
-        font-size: 20px;
-        line-height: 1.5;
-        margin-bottom: 25px;
-        padding-left: 10px;
-        border-left-width: 4px;
-    }
-    .lp-text {
-        font-size: 15px; 
-        line-height: 1.75;
-        text-align: left;
-        margin-bottom: 20px;
-        padding: 0 2px;
-    }
-    .speech-bubble {
-        font-size: 14px;
-        padding: 15px;
-        margin: 20px 0;
-        border-radius: 8px;
-    }
-    .photo-inst {
-        width: calc(100% + 10%) !important;
-        margin-left: -5% !important;
-        margin-right: -5% !important;
-        border-radius: 0;
-    }
-    .comp-table {
-        font-size: 11px;
-        margin: 20px 0;
-        width: 100%;
-    }
-    .comp-table th, 
-    .comp-table td {
-        padding: 10px 2px;
-        white-space: nowrap;
-    }
-    .cta-btn {
-        font-size: 18px;
-        padding: 18px 0;
-        width: 100%;
-    }
-    .fixed-cta {
-        padding: 10px 15px;
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
+@media screen and (max-width: 480px) {
+    .lp-heading { font-size: 19px; }
+    .lp-text { font-size: 15px; }
+    .comp-table { font-size: 11px; }
 }
