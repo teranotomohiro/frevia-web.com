@@ -133,15 +133,31 @@ table { border-collapse: collapse; border-spacing: 0; }
    4. Components
    ========================================================================== */
 
-/* Full Width Figure (Breaking out of container padding) */
-.c-figure-full {
+figure {
+    display: block;
     margin-block: 30px;
-    /* Smart calc to break padding */
+    /* 親要素のパディング分だけネガティブマージンを設定して引き伸ばす */
     margin-inline: calc(var(--container-padding) * -1);
     width: calc(100% + var(--container-padding) * 2);
     max-width: none;
 }
-.c-figure-full.u-no-margin-top { margin-top: 0; }
+
+/* 画像自体の設定：親(figure)に合わせて幅100%にする */
+figure img,
+figure video {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 比率を保ちつつ枠を埋める */
+}
+
+/* マージン調整用ユーティリティ */
+figure.u-no-margin-top {
+    margin-top: 0;
+}
+
+/* 注意: .c-figure-full クラスは不要になりましたが、
+   HTMLに残っていても問題ないようCSSセレクタを書き換えました。
+*/
 
 /* Speech Bubble */
 .c-speech-bubble {
