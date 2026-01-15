@@ -58,18 +58,21 @@ body {
     padding-bottom: 80px; /* Space for fixed bar */
 }
 
-/* Fixed CTA Bar */
+/* Fixed CTA Bar - PC表示最適化 */
 .l-fixed-bar {
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: var(--width-max); /* コンテンツ幅に合わせる */
     z-index: 1000;
     pointer-events: none;
 }
 
 .l-fixed-bar__inner {
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(4px); /* Safari対応 */
     backdrop-filter: blur(4px);
     box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
     padding: 15px 0;
@@ -149,6 +152,7 @@ body {
     font-weight: 700;
 }
 
+/* PC/SP 切り替え表示クラス */
 .u-sp-only { display: block; }
 @media (min-width: 600px) {
     .u-sp-only { display: none; }
@@ -310,9 +314,8 @@ body {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background: #eee; /* 画像読み込み前の背景色として残してもOKです */
+    background: #eee;
     flex-shrink: 0;
-    /* ★以下を追加（画像を枠いっぱいにトリミングして表示） */
     object-fit: cover;
 }
 
@@ -393,9 +396,10 @@ body {
 
 
 /* ==========================================================================
-   Mobile Responsive (スマホ最適化) - 追記部分
+   Mobile Responsive (スマホ最適化)
    ========================================================================== */
-@media screen and (max-width: 480px) {
+/* ブレイクポイントをHTMLの.u-sp-only (600px) と統一 */
+@media screen and (max-width: 600px) {
     :root {
         /* スマホではセクション上下の余白を少し詰める */
         --space-section: 40px; 
