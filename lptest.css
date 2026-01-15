@@ -360,10 +360,11 @@ video {
 /* ==========================================================================
    Mobile Responsive Styles (スマホ最適化)
    ========================================================================== */
+
 @media screen and (max-width: 480px) {
     /* 本文：少しサイズを落とし、両端揃え(justify)を解除して読みやすく */
     .lp-text {
-        font-size: 14px; /* 16px -> 15px */
+        font-size: 15px; /* 16px -> 15px */
         line-height: 1.7;
         text-align: left;
         margin-bottom: 20px;
@@ -371,7 +372,7 @@ video {
 
     /* 見出し：画面からはみ出ないよう調整 */
     .lp-heading {
-        font-size: 17px; /* 22px -> 19px */
+        font-size: 19px; /* 22px -> 19px */
         line-height: 1.4;
         padding-left: 12px;
         margin-bottom: 20px;
@@ -379,44 +380,44 @@ video {
 
     /* 吹き出し：余白と文字サイズをスマホ用に */
     .speech-bubble {
-        font-size: 10px;
-        padding: 11px;
+        font-size: 14px;
+        padding: 15px;
         margin: 20px 0;
     }
 
     /* ポイントボックスの見出し */
     .point-header {
-        font-size: 13px;
-        padding: 9px 4px;
+        font-size: 14px;
+        padding: 10px 5px;
     }
 
     /* 比較表：スマホだと窮屈になるため文字と余白を縮小 */
     .comp-table {
-        font-size: 10px; /* 13px -> 11px */
+        font-size: 11px; /* 13px -> 11px */
     }
     .comp-table th, 
     .comp-table td {
-        padding: 7px 1px;
+        padding: 8px 2px;
     }
 
     /* CTAボタン：押しやすさを維持しつつ文字バランス調整 */
     .cta-btn {
-        font-size: 17px; /* 20px -> 18px */
-        padding: 17px 9px;
+        font-size: 18px; /* 20px -> 18px */
+        padding: 18px 10px;
         width: 100%; /* 横幅いっぱい */
     }
     .cta-sub {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     /* 固定フッターCTA */
     .fixed-cta a {
-        font-size: 13px;
-        padding: 11px;
+        font-size: 14px;
+        padding: 12px;
     }
     
     /* セクション余白の微調整 */
     .lp-section {
-        padding: 39px 14px; /* 左右の余白を少し詰める */
+        padding: 40px 15px; /* 左右の余白を少し詰める */
     }
 }
