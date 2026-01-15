@@ -371,7 +371,7 @@ video {
 
     /* 見出し：画面からはみ出ないよう調整 */
     .lp-heading {
-        font-size: 18px; /* 22px -> 19px */
+        font-size: 17px; /* 22px -> 19px */
         line-height: 1.4;
         padding-left: 12px;
         margin-bottom: 20px;
@@ -379,8 +379,8 @@ video {
 
     /* 吹き出し：余白と文字サイズをスマホ用に */
     .speech-bubble {
-        font-size: 13px;
-        padding: 14px;
+        font-size: 10px;
+        padding: 11px;
         margin: 20px 0;
     }
 
