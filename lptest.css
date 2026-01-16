@@ -155,9 +155,54 @@ figure.u-no-margin-top {
     margin-top: 0;
 }
 
-/* 注意: .c-figure-full クラスは不要になりましたが、
-   HTMLに残っていても問題ないようCSSセレクタを書き換えました。
-*/
+/* Figure内のリンク設定 */
+figure a {
+    display: block; /* リンクをブロック要素にし、画像の隙間を消す */
+    transition: opacity 0.3s ease; /* ホバー時のアニメーション設定 */
+}
+
+/* ホバー時の動き（透明度を少し下げてクリックできることを伝える） */
+figure a:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   Image Overlay Caption
+   ========================================================================== */
+
+/* 画像を基準に配置するための設定 */
+.c-figure-overlay {
+    position: relative; /* 子要素(注釈)の配置基準点にする */
+}
+
+/* 右下の注釈スタイル */
+.c-caption-overlay {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    
+    font-size: 0.7rem;
+    color: #444;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 6px;
+    border-radius: 2px;
+    line-height: 1.2;
+    z-index: 1;
+    pointer-events: none;
+    
+    /* ★追加：複数行になった場合に右揃えにする */
+    text-align: right; 
+}
+
+/* スマホなど画面が狭い時の微調整 */
+@media (max-width: 480px) {
+    .c-caption-overlay {
+        font-size: 0.6rem; /* スマホではさらに少し小さく */
+        bottom: 3px;
+        right: 3px;
+    }
+}
+
 
 /* Speech Bubble */
 .c-speech-bubble {
