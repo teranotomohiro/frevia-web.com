@@ -16,7 +16,7 @@
     --color-price: #E63946;
     --color-highlight: #FFF176;
     
-    /* New: 緊急色・強調色を一元管理 */
+    /* 緊急色・強調色 */
     --color-urgent: #FF4D6D; 
 
     /* Gradients */
@@ -45,6 +45,11 @@ body {
     margin: 0;
     padding: 0;
     -webkit-text-size-adjust: 100%;
+}
+
+/* 汎用的なトランジション設定（スムーズな変化） */
+a, button, summary {
+    transition: all 0.3s ease;
 }
 
 /* ==========================================================================
@@ -108,10 +113,15 @@ body {
     color: #666;
     text-decoration: none;
     font-size: 12px;
+    display: inline-block; /* トランスフォーム用にブロック化 */
 }
 
+/* テキストリンクのホバーエフェクト */
 .l-footer__nav a:hover {
     text-decoration: underline;
+    color: var(--color-text); /* 少し濃くする */
+    opacity: 0.7;
+    transform: translateY(-1px);
 }
 
 .l-footer__copyright {
@@ -166,9 +176,9 @@ body {
     vertical-align: super;
 }
 
-/* 強調文字（赤文字） */
+/* 強調文字 */
 .u-text-accent {
-    color: var(--color-urgent); /* 変数管理に変更 */
+    color: var(--color-urgent);
     font-weight: 700;
 }
 
@@ -252,12 +262,11 @@ body {
     margin: 0 0 10px;
 }
 
-/* --- 価格表示のカスタマイズ --- */
+/* 価格表示 */
 .c-cta-box__price-area {
     margin: 15px 0;
 }
 
-/* 元値（取り消し線） */
 .c-cta-box__price-original {
     font-size: 15px;
     color: #888;
@@ -276,9 +285,8 @@ body {
     font-weight: normal;
 }
 
-/* メイン価格（980円） */
 .c-cta-box__amount {
-    font-size: 42px; /* 少し強調 */
+    font-size: 36px;
     color: var(--color-price);
     font-weight: 700;
     line-height: 1;
@@ -291,7 +299,7 @@ body {
     margin-left: 5px;
 }
 
-/* Buttons */
+/* Buttons (ホバーエフェクト強化) */
 .c-btn {
     display: block;
     color: var(--color-white);
@@ -299,14 +307,20 @@ body {
     font-weight: 700;
     text-align: center;
     border-radius: 50px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease, filter 0.2s ease;
     animation: float 3s ease-in-out infinite;
-    will-change: transform; /* Performance */
+    will-change: transform;
 }
 
 .c-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-4px) scale(1.02); /* 少し浮き上がりつつ拡大 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    filter: brightness(1.1); /* 明るく発光させる */
+}
+
+/* ホバー時にアニメーションを一時停止して安定させる */
+.c-btn:hover {
+    animation-play-state: paused;
 }
 
 .c-btn--primary {
@@ -407,6 +421,20 @@ body {
     height: auto;
     border-radius: 0;
     border: none;
+    transition: transform 0.3s ease, filter 0.3s ease; /* 画像リンク用トランジション */
+}
+
+/* 画像リンクのホバーエフェクト（拡大＋明度UP） */
+.c-figure-media a {
+    display: block;
+    overflow: hidden; /* 拡大時にはみ出さないように */
+    border-radius: 8px; /* 角丸をつける */
+}
+
+.c-figure-media a:hover img {
+    transform: scale(1.03); /* 3%拡大 */
+    filter: brightness(1.05); /* 少し明るく */
+    cursor: pointer;
 }
 
 .c-figure-media--video {
@@ -430,7 +458,7 @@ body {
 
 
 /* ==========================================================================
-   Mobile Responsive (スマホ最適化)
+   Mobile Responsive
    ========================================================================== */
 @media screen and (max-width: 600px) {
     :root {
@@ -473,7 +501,7 @@ body {
         padding: 25px 15px;
     }
     .c-cta-box__amount {
-        font-size: 38px; /* スマホでの価格サイズ調整 */
+        font-size: 38px;
     }
     .c-btn--primary, 
     .c-btn--urgent {
@@ -487,7 +515,7 @@ body {
 }
 
 /* ==========================================================================
-   Accordion (全額返金保証用 折りたたみ)
+   Accordion (全額返金保証用)
    ========================================================================== */
 .c-accordion {
     margin-top: 15px;
@@ -504,16 +532,18 @@ body {
     font-weight: 700;
     text-align: center;
     background-color: #f9f9f9;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
     list-style: none;
+}
+
+/* アコーディオンのホバーエフェクト */
+.c-accordion__summary:hover {
+    background-color: #f0f0f0;
+    color: var(--color-navy); /* 文字色も少し変化させて反応を示す */
 }
 
 .c-accordion__summary::-webkit-details-marker {
     display: none;
-}
-
-.c-accordion__summary:hover {
-    background-color: #f0f0f0;
 }
 
 .c-accordion__content {
