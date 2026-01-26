@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Variables - frevia Brand Identity
+   ========================================================================== */
+:root {
+    --color-primary: #23a5bb;        /* 水色：メインカラー */
+    --color-corporate-blue: #003668; /* 紺色：ベース・見出し */
+    --color-accent: #e84233;         /* オレンジ：強調・CV */
+    --color-text-main: #333;
+    --color-text-light: #666;
+    --color-bg-body: #f4f7f6;        /* 薄いグレー */
+    --color-white: #fff;
+    --font-base: "Inter", "Noto Sans JP", sans-serif;
+    --container-width: 1200px;
+    --sidebar-width: 260px;
+    --radius-base: 6px;
+    --shadow-base: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   Base & Layout
+   ========================================================================== */
+body {
+    font-family: var(--font-base);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-body);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.l-app-container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+}
+
+@media (max-width: 960px) {
+    .l-app-container { grid-template-columns: 1fr; }
+}
+
+/* Sidebar - 紺色を基調とした信頼感のあるデザイン */
+.l-sidebar {
+    background-color: var(--color-corporate-blue);
+    color: var(--color-white);
+    padding: 2.5rem 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.c-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.c-logo__sub { font-size: 0.8rem; opacity: 0.7; font-weight: 400; }
+
+.p-nav__list { list-style: none; margin-top: 3rem; }
+.p-nav__link {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    border-radius: var(--radius-base);
+    transition: 0.3s;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+.p-nav__link:hover, .p-nav__link.active {
+    background: rgba(255,255,255,0.1);
+    color: var(--color-white);
+}
+.p-nav__link--featured {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+.l-main { padding: 3rem; }
+.l-content-inner { max-width: 900px; margin: 0 auto; }
+
+/* 見出し - freviaスタイル準拠 */
+.c-heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-corporate-blue);
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.c-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: var(--color-accent); /* オレンジのアクセント */
+}
+
+/* カード */
+.c-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-base);
+    border: none;
+}
+.c-card--highlight { border-top: 4px solid var(--color-primary); }
+
+.c-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8em 2em;
+    border-radius: var(--radius-base);
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+.c-btn--primary { background: var(--color-primary); color: var(--color-white); }
+.c-btn--accent { background: var(--color-accent); color: var(--color-white); }
+.c-btn--primary:hover, .c-btn--accent:hover { opacity: 0.8; }
+.c-btn--wide { width: 100%; }
+
+/* Form Elements */
+.c-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+.c-range {
+    width: 100%;
+    accent-color: var(--color-primary);
+}
+
+/* Utilities */
+.u-text-primary { color: var(--color-primary); }
+.u-text-rank { font-size: 4rem; font-weight: 900; text-align: center; color: var(--color-corporate-blue); }
+.u-mt-lg { margin-top: 2rem; }
+
+/* モバイル対応 */
+.l-mobile-header { display: none; }
+@media (max-width: 960px) {
+    .l-sidebar { display: none; }
+    .l-mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--color-white);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+}

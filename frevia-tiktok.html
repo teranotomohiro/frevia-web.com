@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TikTokアルゴリズムの仕組みとAI投稿アシスト。企業のマーケティング自走を支援します。">
+    <title>TikTok Algorithm Master Guide | frevia</title>
+    <link rel="stylesheet" href="frevia-tiktok.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+    <div class="l-app-container">
+        <aside class="l-sidebar" id="sidebar-nav">
+            <div class="l-sidebar__inner">
+                <div class="c-logo-area">
+                    <h1 class="c-logo">TikTok<br><span class="u-text-primary">Algorithm</span><br><span class="c-logo__sub">Master Guide</span></h1>
+                </div>
+                <nav class="p-nav" aria-label="メインメニュー">
+                    <ul class="p-nav__list">
+                        <li><a href="#" class="p-nav__link active" data-section="section-overview">概要</a></li>
+                        <li><a href="#" class="p-nav__link" data-section="section-ladder">拡散の仕組み</a></li>
+                        <li><a href="#" class="p-nav__link" data-section="section-metrics">重要指標</a></li>
+                        <li><a href="#" class="p-nav__link" data-section="section-simulator">投稿診断</a></li>
+                        <li><a href="#" class="p-nav__link p-nav__link--featured" data-section="section-ai-lab">✨ AI投稿アシスト</a></li>
+                        <li><a href="#" class="p-nav__link" data-section="section-strategy">攻略法</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <main id="main-content" class="l-main">
+            <header class="l-mobile-header">
+                <span class="c-logo">TikTok <span class="u-text-primary">Algorithm</span></span>
+                <button type="button" class="c-hamburger" id="js-hamburger" aria-label="メニュー">
+                    <span class="c-hamburger__line"></span>
+                </button>
+            </header>
+
+            <div class="l-content-inner">
+                <section id="section-overview" class="p-section active">
+                    <header class="p-section__header">
+                        <h2 class="c-heading">TikTokアルゴリズムの正体</h2>
+                        <p class="c-lead-text">「誰が」ではなく「何が」面白いかをAIが判断する、実力主義の世界。</p>
+                    </header>
+                    <div class="p-grid">
+                        <article class="c-card">
+                            <h3 class="c-card__title">ソーシャルグラフ</h3>
+                            <p class="u-text-small">既存のSNS (FB/IG/X)</p>
+                            <p>フォロワーとの繋がりが重要。新規アカウントは埋もれやすい構造です。</p>
+                        </article>
+                        <article class="c-card c-card--highlight">
+                            <h3 class="c-card__title">インタレストグラフ</h3>
+                            <p class="u-text-small">TikTok</p>
+                            <p>個人の興味関心が最優先。フォロワー0でも100万再生が可能なアルゴリズムです。</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="section-simulator" class="p-section">
+                    <h2 class="c-heading">投稿バズ度診断</h2>
+                    <div class="p-simulator c-card">
+                        <div class="p-simulator__form">
+                            <div class="c-form-group">
+                                <label class="p-form__label">平均視聴維持率: <span id="val-retention" class="u-text-primary">30%</span></label>
+                                <input type="range" id="input-retention" class="c-range" min="0" max="100" value="30">
+                            </div>
+                            <div class="c-form-group">
+                                <label class="p-form__label">フル視聴率: <span id="val-completion" class="u-text-primary">15%</span></label>
+                                <input type="range" id="input-completion" class="c-range" min="0" max="100" value="15">
+                            </div>
+                            <button type="button" id="btn-analyze-stats" class="c-btn c-btn--primary c-btn--wide">✨ AIに分析を依頼</button>
+                        </div>
+                        <div class="p-simulator__result">
+                            <p class="u-text-center">推定評価ランク</p>
+                            <div id="result-tier" class="u-text-rank">C</div>
+                            <div class="c-progress"><div id="score-bar" class="c-progress__bar"></div></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-ai-lab" class="p-section">
+                    <h2 class="c-heading">AI 投稿アシスト</h2>
+                    <div class="c-card">
+                        <div class="p-ai-input-group">
+                            <input type="text" id="ai-input-topic" class="c-input" placeholder="ジャンルを入力（例：時短レシピ）">
+                            <button type="button" id="btn-generate-concept" class="c-btn c-btn--accent">企画を生成</button>
+                        </div>
+                        <div id="ai-concepts-container" class="p-grid u-mt-lg"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
