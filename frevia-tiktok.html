@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TikTokアルゴリズムの仕組みとAI投稿アシスト。企業のマーケティング自走を支援します。">
-    <title>TikTok Algorithm Master Guide | frevia</title>
+    <meta name="description" content="TikTokアルゴリズムの仕組みとAI投稿アシスト。freviaが提供するマーケティング自走支援ツール。">
+    <title>TikTok Algorithm Master Guide | 株式会社frevia</title>
     <link rel="stylesheet" href="frevia-tiktok.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script src="main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
@@ -19,7 +18,7 @@
         <aside class="l-sidebar" id="sidebar-nav">
             <div class="l-sidebar__inner">
                 <div class="c-logo-area">
-                    <h1 class="c-logo">TikTok<br><span class="u-text-primary">Algorithm</span><br><span class="c-logo__sub">Master Guide</span></h1>
+                    <p class="c-logo">TikTok<br><span class="u-text-primary">Algorithm</span><br><span class="c-logo__sub">Master Guide</span></p>
                 </div>
                 <nav class="p-nav" aria-label="メインメニュー">
                     <ul class="p-nav__list">
@@ -28,7 +27,6 @@
                         <li><a href="#" class="p-nav__link" data-section="section-metrics">重要指標</a></li>
                         <li><a href="#" class="p-nav__link" data-section="section-simulator">投稿診断</a></li>
                         <li><a href="#" class="p-nav__link p-nav__link--featured" data-section="section-ai-lab">✨ AI投稿アシスト</a></li>
-                        <li><a href="#" class="p-nav__link" data-section="section-strategy">攻略法</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,7 +35,9 @@
         <main id="main-content" class="l-main">
             <header class="l-mobile-header">
                 <span class="c-logo">TikTok <span class="u-text-primary">Algorithm</span></span>
-                <button type="button" class="c-hamburger" id="js-hamburger" aria-label="メニュー">
+                <button type="button" class="c-hamburger" id="js-hamburger" aria-expanded="false" aria-label="メニューを開く">
+                    <span class="c-hamburger__line"></span>
+                    <span class="c-hamburger__line"></span>
                     <span class="c-hamburger__line"></span>
                 </button>
             </header>
@@ -51,14 +51,38 @@
                     <div class="p-grid">
                         <article class="c-card">
                             <h3 class="c-card__title">ソーシャルグラフ</h3>
-                            <p class="u-text-small">既存のSNS (FB/IG/X)</p>
+                            <p class="u-text-sub">既存のSNS (FB/IG/X)</p>
                             <p>フォロワーとの繋がりが重要。新規アカウントは埋もれやすい構造です。</p>
                         </article>
                         <article class="c-card c-card--highlight">
                             <h3 class="c-card__title">インタレストグラフ</h3>
-                            <p class="u-text-small">TikTok</p>
+                            <p class="u-text-sub">TikTok</p>
                             <p>個人の興味関心が最優先。フォロワー0でも100万再生が可能なアルゴリズムです。</p>
                         </article>
+                    </div>
+                </section>
+
+                <section id="section-ladder" class="p-section">
+                    <h2 class="c-heading">拡散の仕組み</h2>
+                    <div class="c-card">
+                        <p>動画は段階的に評価され、各ステップ（ラダー）を突破することで拡散規模が拡大します。</p>
+                        <div id="ladder-chart-container" style="height: 300px; margin-top: 2rem;">
+                            <canvas id="ladderChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-metrics" class="p-section">
+                    <h2 class="c-heading">重要指標</h2>
+                    <div class="p-grid">
+                        <div class="c-card">
+                            <h3 class="c-card__title">評価ウェイト</h3>
+                            <canvas id="metricsChart"></canvas>
+                        </div>
+                        <div class="c-card">
+                            <h3 class="c-card__title">視聴維持率モデル</h3>
+                            <canvas id="retentionChart"></canvas>
+                        </div>
                     </div>
                 </section>
 
@@ -79,8 +103,11 @@
                         <div class="p-simulator__result">
                             <p class="u-text-center">推定評価ランク</p>
                             <div id="result-tier" class="u-text-rank">C</div>
-                            <div class="c-progress"><div id="score-bar" class="c-progress__bar"></div></div>
+                            <div class="c-progress" aria-hidden="true"><div id="score-bar" class="c-progress__bar"></div></div>
                         </div>
+                    </div>
+                    <div id="ai-stats-result" class="c-card u-mt-lg hidden">
+                        <p id="ai-stats-text" style="white-space: pre-wrap; font-size: 0.9rem; color: var(--color-corporate-blue);"></p>
                     </div>
                 </section>
 
@@ -97,5 +124,101 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiKey = ""; // ランタイムより供給
+            
+            // --- ナビゲーション制御 ---
+            const navLinks = document.querySelectorAll('.p-nav__link');
+            const sections = document.querySelectorAll('.p-section');
+            const hamburger = document.getElementById('js-hamburger');
+            const sidebar = document.getElementById('sidebar-nav');
+
+            function switchSection(id) {
+                sections.forEach(s => s.classList.remove('active'));
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                const target = document.getElementById(id);
+                if(target) target.classList.add('active');
+                
+                const activeLink = document.querySelector(`[data-section="${id}"]`);
+                if(activeLink) activeLink.classList.add('active');
+                
+                // モバイル時はメニューを閉じる
+                sidebar.classList.remove('is-open');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    switchSection(link.dataset.section);
+                });
+            });
+
+            // --- モバイルメニュー制御 ---
+            hamburger.addEventListener('click', () => {
+                const isOpen = sidebar.classList.toggle('is-open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // --- シミュレーター計算 ---
+            const inputs = ['input-retention', 'input-completion'];
+            function updateSim() {
+                const ret = document.getElementById('input-retention').value;
+                const comp = document.getElementById('input-completion').value;
+                document.getElementById('val-retention').innerText = ret + '%';
+                document.getElementById('val-completion').innerText = comp + '%';
+
+                const score = (ret * 0.6) + (comp * 0.4);
+                let tier = 'C';
+                if(score > 70) tier = 'S';
+                else if(score > 50) tier = 'A';
+                else if(score > 30) tier = 'B';
+                
+                document.getElementById('result-tier').innerText = tier;
+                document.getElementById('score-bar').style.width = score + '%';
+            }
+            inputs.forEach(id => document.getElementById(id).addEventListener('input', updateSim));
+            updateSim();
+
+            // --- チャート初期化 (Chart.js) ---
+            new Chart(document.getElementById('metricsChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['視聴時間', '完了率', '反応'],
+                    datasets: [{
+                        data: [50, 30, 20],
+                        backgroundColor: ['#23a5bb', '#003668', '#e84233']
+                    }]
+                }
+            });
+
+            // --- AI機能 (Gemini API 連携用プレースホルダー) ---
+            async function callGemini(prompt) {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        systemInstruction: { parts: [{ text: "You are a world-class TikTok Expert. Answer in Japanese." }] }
+                    })
+                });
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "AI通信に失敗しました。";
+            }
+
+            document.getElementById('btn-generate-concept').addEventListener('click', async () => {
+                const topic = document.getElementById('ai-input-topic').value;
+                if(!topic) return;
+                const container = document.getElementById('ai-concepts-container');
+                container.innerHTML = '<p class="u-text-center">分析中...</p>';
+                const result = await callGemini(`${topic}に関するバズるTikTok動画企画を2つ提案してください。タイトルとフックを明確に。`);
+                container.innerHTML = `<div class="c-card"><p style="white-space:pre-wrap">${result}</p></div>`;
+            });
+        });
+    </script>
 </body>
 </html>
