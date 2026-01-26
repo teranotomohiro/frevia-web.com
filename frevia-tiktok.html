@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TikTokアルゴリズムの仕組みとAI投稿アシスト。freviaが提供するマーケティング自走支援ツール。">
+    <meta name="description" content="TikTokアルゴリズムの仕組みとAI投稿アシスト。株式会社freviaが提供するマーケティング自走支援ツール。">
     <title>TikTok Algorithm Master Guide | 株式会社frevia</title>
     <link rel="stylesheet" href="frevia-tiktok.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="frevia-tiktok.js" defer></script>
 </head>
 <body>
     <div class="l-app-container">
         <aside class="l-sidebar" id="sidebar-nav">
             <div class="l-sidebar__inner">
                 <div class="c-logo-area">
-                    <p class="c-logo">TikTok<br><span class="u-text-primary">Algorithm</span><br><span class="c-logo__sub">Master Guide</span></p>
+                    <img src="images/frevia_logo_vertical_white.png" alt="frevia" class="c-logo-img" width="120">
+                    <p class="c-logo-sub">TikTok Algorithm<br>Master Guide</p>
                 </div>
                 <nav class="p-nav" aria-label="メインメニュー">
                     <ul class="p-nav__list">
@@ -25,6 +27,7 @@
                         <li><a href="#section-metrics" class="p-nav__link">重要指標</a></li>
                         <li><a href="#section-simulator" class="p-nav__link">投稿診断</a></li>
                         <li><a href="#section-ai-lab" class="p-nav__link p-nav__link--featured">✨ AI投稿アシスト</a></li>
+                        <li><a href="#section-strategy" class="p-nav__link">攻略法</a></li>
                     </ul>
                 </nav>
             </div>
@@ -32,7 +35,7 @@
 
         <main id="main-content" class="l-main">
             <header class="l-mobile-header">
-                <span class="c-logo">TikTok <span class="u-text-primary">Algorithm</span></span>
+                <img src="images/frevia_logo_main.png" alt="frevia" height="30">
                 <button type="button" class="c-hamburger" id="js-hamburger" aria-expanded="false" aria-label="メニューを開く">
                     <span class="c-hamburger__line"></span>
                     <span class="c-hamburger__line"></span>
@@ -44,7 +47,7 @@
                 <section id="section-overview" class="p-section">
                     <header class="p-section__header">
                         <h2 class="c-heading">TikTokアルゴリズムの正体</h2>
-                        <p class="c-lead-text">「誰が」ではなく「何が」面白いかをAIが判断する、実力主義の世界。</p>
+                        <p class="c-lead-text">「誰が」ではなく「何が」面白いかをAIが判断する、実力主義の世界へ。</p>
                     </header>
                     <div class="p-grid">
                         <article class="c-card">
@@ -55,28 +58,43 @@
                         <article class="c-card c-card--highlight">
                             <h3 class="c-card__title">インタレストグラフ</h3>
                             <p class="u-text-sub">TikTok</p>
-                            <p>個人の興味関心が最優先。フォロワー0でも100万再生が可能なアルゴリズムです。</p>
+                            <p>個人の興味関心が最優先。フォロワー0でも100万再生が可能です。</p>
                         </article>
                     </div>
                 </section>
 
                 <section id="section-ladder" class="p-section">
-                    <h2 class="c-heading">拡散の仕組み</h2>
-                    <div class="c-card">
-                        <p>動画は段階的に評価され、各ステップ（ラダー）を突破することで拡散規模が拡大します。</p>
+                    <h2 class="c-heading">拡散の仕組み（トラフィック・ラダー）</h2>
+                    <div class="p-ladder">
+                        <div class="p-ladder__nav">
+                            <button class="p-ladder__btn active" data-step="1">
+                                <strong>Step 1: 初期テスト</strong>
+                                <span>200 - 500 Views</span>
+                            </button>
+                            <button class="p-ladder__btn" data-step="2">
+                                <strong>Step 2: 中規模拡散</strong>
+                                <span>1,000 - 5,000 Views</span>
+                            </button>
+                            <button class="p-ladder__btn" data-step="3">
+                                <strong>Step 3: おすすめ拡大</strong>
+                                <span>1万 - 10万 Views</span>
+                            </button>
                         </div>
+                        <article class="p-ladder__display c-card" id="ladder-detail-content">
+                            </article>
+                    </div>
                 </section>
 
                 <section id="section-metrics" class="p-section">
-                    <h2 class="c-heading">重要指標</h2>
+                    <h2 class="c-heading">重要指標の可視化</h2>
                     <div class="p-grid">
                         <div class="c-card">
-                            <h3 class="c-card__title">評価ウェイト</h3>
-                            <canvas id="metricsChart"></canvas>
+                            <h3 class="c-card__title">評価ウェイト (推定)</h3>
+                            <div class="c-chart-container"><canvas id="metricsChart"></canvas></div>
                         </div>
                         <div class="c-card">
-                            <h3 class="c-card__title">視聴維持率モデル</h3>
-                            <canvas id="retentionChart"></canvas>
+                            <h3 class="c-card__title">理想的な維持率</h3>
+                            <div class="c-chart-container"><canvas id="retentionChart"></canvas></div>
                         </div>
                     </div>
                 </section>
@@ -93,7 +111,13 @@
                                 <label class="p-form__label">フル視聴率: <span id="val-completion" class="u-text-primary">15%</span></label>
                                 <input type="range" id="input-completion" class="c-range" min="0" max="100" value="15">
                             </div>
-                            <button type="button" id="btn-analyze-stats" class="c-btn c-btn--primary c-btn--wide">✨ AIに分析を依頼</button>
+                            <div class="c-form-group">
+                                <label class="p-form__label">エンゲージメント率: <span id="val-engagement" class="u-text-primary">5%</span></label>
+                                <input type="range" id="input-engagement" class="c-range" min="0" max="20" step="0.5" value="5">
+                            </div>
+                            <button type="button" id="btn-analyze-stats" class="c-btn c-btn--primary c-btn--wide">
+                                <span>✨</span> AIに分析とアドバイスを依頼
+                            </button>
                         </div>
                         <div class="p-simulator__result">
                             <p class="u-text-center">推定評価ランク</p>
@@ -101,88 +125,53 @@
                             <div class="c-progress" aria-hidden="true"><div id="score-bar" class="c-progress__bar"></div></div>
                         </div>
                     </div>
-                    <div id="ai-stats-result" class="c-card u-mt-lg hidden">
-                        <p id="ai-stats-text" style="white-space: pre-wrap; font-size: 0.9rem; color: var(--color-corporate-blue);"></p>
+                    <div id="ai-stats-result" class="c-card u-mt-lg hidden fade-in">
+                        <h4 class="c-card__title u-text-primary">✨ AIエキスパート診断結果</h4>
+                        <p id="ai-stats-text" class="u-text-small leading-relaxed"></p>
                     </div>
                 </section>
 
                 <section id="section-ai-lab" class="p-section">
-                    <h2 class="c-heading">AI 投稿アシスト</h2>
+                    <header class="p-section__header">
+                        <h2 class="c-heading">✨ AI 投稿アシスト</h2>
+                        <p class="c-lead-text">Geminiがアルゴリズム理論に基づき、バズる企画を提案します。</p>
+                    </header>
                     <div class="c-card">
                         <div class="p-ai-input-group">
-                            <input type="text" id="ai-input-topic" class="c-input" placeholder="ジャンルを入力（例：時短レシピ）">
-                            <button type="button" id="btn-generate-concept" class="c-btn c-btn--accent">企画を生成</button>
+                            <input type="text" id="ai-input-topic" class="c-input" placeholder="例: 時短レシピ、ガジェット紹介、vlogなど...">
+                            <button type="button" id="btn-generate-concept" class="c-btn c-btn--accent">
+                                <span id="ai-btn-text">企画を生成する</span>
+                                <div id="ai-spinner" class="c-spinner hidden"></div>
+                            </button>
                         </div>
                         <div id="ai-concepts-container" class="p-grid u-mt-lg"></div>
+                        <p id="ai-empty-state" class="u-text-center u-text-sub u-mt-lg">ジャンルを入力して「企画を生成する」をクリックしてください。</p>
+                    </div>
+                </section>
+
+                <section id="section-strategy" class="p-section">
+                    <h2 class="c-heading">コンテンツ攻略チェックリスト</h2>
+                    <div class="p-grid">
+                        <div class="c-card">
+                            <h3 class="c-card__title">フック (開始2秒)</h3>
+                            <ul class="c-list">
+                                <li>・「最後に驚きの結果が」などのテロップ</li>
+                                <li>・視覚的なインパクト (動き、色)</li>
+                                <li>・悩みの共感から入る</li>
+                            </ul>
+                        </div>
+                        <div class="c-card">
+                            <h3 class="c-card__title">SEO・検索対策</h3>
+                            <ul class="c-list">
+                                <li>・キーワードを音声と字幕に入れる</li>
+                                <li>・キャプションに3つの関連タグ</li>
+                                <li>・カバーに目立つ文字入れ</li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
             </div>
         </main>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.p-nav__link');
-            const sections = document.querySelectorAll('.p-section');
-            const sidebar = document.getElementById('sidebar-nav');
-            const hamburger = document.getElementById('js-hamburger');
-
-            // 1. モバイルメニュー開閉
-            hamburger.addEventListener('click', () => {
-                sidebar.classList.toggle('is-open');
-            });
-
-            // 2. スクロールスパイ (現在の表示セクションに合わせてメニューをハイライト)
-            const handleScroll = () => {
-                let currentSectionId = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    // ヘッダーや余白を考慮して判定位置を調整
-                    if (window.scrollY >= sectionTop - 150) {
-                        currentSectionId = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', handleScroll);
-
-            // 3. ナビゲーションクリック時のモバイルメニュー閉鎖
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    sidebar.classList.remove('is-open');
-                });
-            });
-
-            // --- チャートやシミュレーターの初期化ロジック (既存分) ---
-            const inputs = ['input-retention', 'input-completion'];
-            function updateSim() {
-                const ret = document.getElementById('input-retention').value;
-                const comp = document.getElementById('input-completion').value;
-                document.getElementById('val-retention').innerText = ret + '%';
-                document.getElementById('val-completion').innerText = comp + '%';
-                const score = (ret * 0.6) + (comp * 0.4);
-                let tier = score > 70 ? 'S' : score > 50 ? 'A' : score > 30 ? 'B' : 'C';
-                document.getElementById('result-tier').innerText = tier;
-                document.getElementById('score-bar').style.width = score + '%';
-            }
-            inputs.forEach(id => document.getElementById(id).addEventListener('input', updateSim));
-            updateSim();
-
-            new Chart(document.getElementById('metricsChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['視聴時間', '完了率', '反応'],
-                    datasets: [{ data: [50, 30, 20], backgroundColor: ['#23a5bb', '#003668', '#e84233'] }]
-                }
-            });
-        });
-    </script>
 </body>
 </html>
