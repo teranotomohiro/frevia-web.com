@@ -12,8 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
-
     <div class="l-app-container">
         <aside class="l-sidebar" id="sidebar-nav">
             <div class="l-sidebar__inner">
@@ -22,11 +20,11 @@
                 </div>
                 <nav class="p-nav" aria-label="メインメニュー">
                     <ul class="p-nav__list">
-                        <li><a href="#" class="p-nav__link active" data-section="section-overview">概要</a></li>
-                        <li><a href="#" class="p-nav__link" data-section="section-ladder">拡散の仕組み</a></li>
-                        <li><a href="#" class="p-nav__link" data-section="section-metrics">重要指標</a></li>
-                        <li><a href="#" class="p-nav__link" data-section="section-simulator">投稿診断</a></li>
-                        <li><a href="#" class="p-nav__link p-nav__link--featured" data-section="section-ai-lab">✨ AI投稿アシスト</a></li>
+                        <li><a href="#section-overview" class="p-nav__link active">概要</a></li>
+                        <li><a href="#section-ladder" class="p-nav__link">拡散の仕組み</a></li>
+                        <li><a href="#section-metrics" class="p-nav__link">重要指標</a></li>
+                        <li><a href="#section-simulator" class="p-nav__link">投稿診断</a></li>
+                        <li><a href="#section-ai-lab" class="p-nav__link p-nav__link--featured">✨ AI投稿アシスト</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,7 +41,7 @@
             </header>
 
             <div class="l-content-inner">
-                <section id="section-overview" class="p-section active">
+                <section id="section-overview" class="p-section">
                     <header class="p-section__header">
                         <h2 class="c-heading">TikTokアルゴリズムの正体</h2>
                         <p class="c-lead-text">「誰が」ではなく「何が」面白いかをAIが判断する、実力主義の世界。</p>
@@ -66,10 +64,7 @@
                     <h2 class="c-heading">拡散の仕組み</h2>
                     <div class="c-card">
                         <p>動画は段階的に評価され、各ステップ（ラダー）を突破することで拡散規模が拡大します。</p>
-                        <div id="ladder-chart-container" style="height: 300px; margin-top: 2rem;">
-                            <canvas id="ladderChart"></canvas>
                         </div>
-                    </div>
                 </section>
 
                 <section id="section-metrics" class="p-section">
@@ -127,96 +122,65 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const apiKey = ""; // ランタイムより供給
-            
-            // --- ナビゲーション制御 ---
             const navLinks = document.querySelectorAll('.p-nav__link');
             const sections = document.querySelectorAll('.p-section');
-            const hamburger = document.getElementById('js-hamburger');
             const sidebar = document.getElementById('sidebar-nav');
+            const hamburger = document.getElementById('js-hamburger');
 
-            function switchSection(id) {
-                sections.forEach(s => s.classList.remove('active'));
-                navLinks.forEach(l => l.classList.remove('active'));
-                
-                const target = document.getElementById(id);
-                if(target) target.classList.add('active');
-                
-                const activeLink = document.querySelector(`[data-section="${id}"]`);
-                if(activeLink) activeLink.classList.add('active');
-                
-                // モバイル時はメニューを閉じる
-                sidebar.classList.remove('is-open');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            // 1. モバイルメニュー開閉
+            hamburger.addEventListener('click', () => {
+                sidebar.classList.toggle('is-open');
+            });
 
+            // 2. スクロールスパイ (現在の表示セクションに合わせてメニューをハイライト)
+            const handleScroll = () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // ヘッダーや余白を考慮して判定位置を調整
+                    if (window.scrollY >= sectionTop - 150) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            // 3. ナビゲーションクリック時のモバイルメニュー閉鎖
             navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    switchSection(link.dataset.section);
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('is-open');
                 });
             });
 
-            // --- モバイルメニュー制御 ---
-            hamburger.addEventListener('click', () => {
-                const isOpen = sidebar.classList.toggle('is-open');
-                hamburger.setAttribute('aria-expanded', isOpen);
-            });
-
-            // --- シミュレーター計算 ---
+            // --- チャートやシミュレーターの初期化ロジック (既存分) ---
             const inputs = ['input-retention', 'input-completion'];
             function updateSim() {
                 const ret = document.getElementById('input-retention').value;
                 const comp = document.getElementById('input-completion').value;
                 document.getElementById('val-retention').innerText = ret + '%';
                 document.getElementById('val-completion').innerText = comp + '%';
-
                 const score = (ret * 0.6) + (comp * 0.4);
-                let tier = 'C';
-                if(score > 70) tier = 'S';
-                else if(score > 50) tier = 'A';
-                else if(score > 30) tier = 'B';
-                
+                let tier = score > 70 ? 'S' : score > 50 ? 'A' : score > 30 ? 'B' : 'C';
                 document.getElementById('result-tier').innerText = tier;
                 document.getElementById('score-bar').style.width = score + '%';
             }
             inputs.forEach(id => document.getElementById(id).addEventListener('input', updateSim));
             updateSim();
 
-            // --- チャート初期化 (Chart.js) ---
             new Chart(document.getElementById('metricsChart'), {
                 type: 'doughnut',
                 data: {
                     labels: ['視聴時間', '完了率', '反応'],
-                    datasets: [{
-                        data: [50, 30, 20],
-                        backgroundColor: ['#23a5bb', '#003668', '#e84233']
-                    }]
+                    datasets: [{ data: [50, 30, 20], backgroundColor: ['#23a5bb', '#003668', '#e84233'] }]
                 }
-            });
-
-            // --- AI機能 (Gemini API 連携用プレースホルダー) ---
-            async function callGemini(prompt) {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }],
-                        systemInstruction: { parts: [{ text: "You are a world-class TikTok Expert. Answer in Japanese." }] }
-                    })
-                });
-                const data = await response.json();
-                return data.candidates?.[0]?.content?.parts?.[0]?.text || "AI通信に失敗しました。";
-            }
-
-            document.getElementById('btn-generate-concept').addEventListener('click', async () => {
-                const topic = document.getElementById('ai-input-topic').value;
-                if(!topic) return;
-                const container = document.getElementById('ai-concepts-container');
-                container.innerHTML = '<p class="u-text-center">分析中...</p>';
-                const result = await callGemini(`${topic}に関するバズるTikTok動画企画を2つ提案してください。タイトルとフックを明確に。`);
-                container.innerHTML = `<div class="c-card"><p style="white-space:pre-wrap">${result}</p></div>`;
             });
         });
     </script>

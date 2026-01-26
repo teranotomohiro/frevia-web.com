@@ -1,15 +1,21 @@
 /* ==========================================================================
-   Variables - frevia Brand Palette
+   Variables & Reset
    ========================================================================== */
 :root {
-    --color-primary: #23a5bb;
-    --color-corporate-blue: #003668;
-    --color-accent: #e84233;
+    --color-primary: #23a5bb;        /* 水色 */
+    --color-corporate-blue: #003668; /* 紺色 */
+    --color-accent: #e84233;         /* オレンジ */
     --color-text-main: #333;
     --color-bg-body: #f4f7f6;
     --sidebar-width: 260px;
     --radius-base: 6px;
     --shadow-base: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* スムーススクロールを有効化 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem; /* スクロール停止位置の微調整 */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,36 +27,55 @@ body {
     line-height: 1.6;
 }
 
+/* スキップリンク削除に伴いスタイルも削除 */
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
 .l-app-container {
     display: grid;
     grid-template-columns: var(--sidebar-width) 1fr;
     min-height: 100vh;
 }
 
-/* Sidebar - デスクトップ用 */
+/* Sidebar - 固定表示 */
 .l-sidebar {
     background-color: var(--color-corporate-blue);
     color: #fff;
     padding: 2.5rem 1.5rem;
-    position: sticky; top: 0; height: 100vh;
+    position: sticky;
+    top: 0;
+    height: 100vh;
     z-index: 1000;
     transition: transform 0.3s ease;
 }
 
+.c-logo { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+.c-logo__sub { font-size: 0.8rem; opacity: 0.7; font-weight: 400; }
+
+.p-nav__list { list-style: none; margin-top: 3rem; }
 .p-nav__link {
     display: block; padding: 0.8rem 1rem;
     color: rgba(255,255,255,0.7); text-decoration: none;
     border-radius: var(--radius-base); transition: 0.3s;
     margin-bottom: 0.5rem;
 }
-.p-nav__link.active { background: rgba(255,255,255,0.1); color: #fff; font-weight: 700; }
+.p-nav__link:hover, .p-nav__link.active {
+    background: rgba(255,255,255,0.1); color: #fff; font-weight: 700;
+}
 
-/* Main Content */
+/* ==========================================================================
+   Main & Sections
+   ========================================================================== */
 .l-main { padding: clamp(1rem, 5vw, 3rem); width: 100%; overflow-x: hidden; }
 .l-content-inner { max-width: 900px; margin: 0 auto; }
 
-.p-section { display: none; animation: fadeIn 0.4s ease-out; }
-.p-section.active { display: block; }
+/* display: none を削除し、セクション間の余白を設定 */
+.p-section {
+    padding-block: 4rem; /* 1ページ構成用のセクション間余白 */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.p-section:last-child { border-bottom: none; }
 
 .c-heading {
     color: var(--color-corporate-blue); text-align: center;
@@ -62,9 +87,10 @@ body {
     background: var(--color-accent);
 }
 
-.c-card { background: #fff; padding: 2rem; border-radius: var(--radius-base); box-shadow: var(--shadow-base); }
+.c-card { background: #fff; padding: 2rem; border-radius: var(--radius-base); box-shadow: var(--shadow-base); margin-bottom: 1rem; }
 .p-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 
+/* Buttons & Form */
 .c-btn {
     display: inline-flex; align-items: center; justify-content: center;
     padding: 0.8rem 2rem; border-radius: var(--radius-base);
@@ -72,9 +98,7 @@ body {
 }
 .c-btn--primary { background: var(--color-primary); color: #fff; }
 .c-btn--accent { background: var(--color-accent); color: #fff; }
-.c-btn:hover { opacity: 0.8; transform: translateY(-1px); }
 
-/* Simulator components */
 .c-range { width: 100%; accent-color: var(--color-primary); margin: 1rem 0; }
 .u-text-rank { font-size: 5rem; font-weight: 900; text-align: center; color: var(--color-corporate-blue); }
 .c-progress { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
@@ -88,7 +112,7 @@ body {
     .l-sidebar {
         position: fixed; left: 0; top: 0;
         transform: translateX(-100%);
-        width: 80%; max-width: 300px;
+        width: 280px;
     }
     .l-sidebar.is-open { transform: translateX(0); }
     .l-mobile-header {
@@ -100,5 +124,5 @@ body {
     .c-hamburger__line { display: block; width: 24px; height: 2px; background: var(--color-primary); margin: 5px 0; }
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.u-mt-lg { margin-top: 2rem; }
 .hidden { display: none !important; }
