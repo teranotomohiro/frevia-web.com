@@ -393,43 +393,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     flex-grow: 1;
 }
 
-/* Stats for Achievements */
-.p-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-@media (max-width: 768px) {
-    .p-stats { gap: 2rem; flex-direction: column; }
-}
-.p-stats__item { display: flex; flex-direction: column; }
-.p-stats__number { 
-    font-size: 3.5rem; 
-    font-weight: 700; 
-    color: var(--color-corporate-blue); 
-    line-height: 1; 
-}
-
-.p-stats__label { font-size: 0.9rem; color: var(--color-text-light); margin-top: 0.5rem; }
-
-/* List Check */
-.p-list-check { max-width: 700px; margin: 0 auto; }
-.p-list-check li {
-    padding-left: 1.5em;
-    position: relative;
-    margin-bottom: 0.8em;
-}
-.p-list-check li::before {
-    content: "✔";
-    color: var(--color-accent);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
 /* Split Layout */
 .p-split {
     display: grid;
